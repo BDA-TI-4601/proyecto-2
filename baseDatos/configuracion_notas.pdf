@@ -1,0 +1,89 @@
+*************************************************************
+BEFORE CONFIGURATE MONGODB:
+
+install mongo-db:
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+
+    echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+
+    sudo apt-get update
+
+    sudo apt-get install -y mongodb-org
+
+change machine name (ubuntu-server-18.04):
+    hostnamectl
+    hostnamectl set-hostname <new-hostname>
+    sudo nano /etc/hosts 
+        127.0.0.1 <new-hostname>
+    sudo nano /etc/cloud/cloud.cfg
+        preserve_hostname: false -> true
+
+*************************************************************
+PORTS
+
+port 27017 -> router
+port 27018 -> config-server
+port 27019 -> shard
+
+*************************************************************
+REPLICA SETS
+
+config-servers:
+    config-techealth
+shards:
+    rep-techealth
+
+*************************************************************
+
+config-server : STEPS
+-- after install mongo and dependencies
+
+sudo mkdir -p /data/db
+sudo mkdir /data/configdb
+sudo chown svradmin /data/configdb
+mongod --configsvr --replSet config-techealth --bind_ip 0.0.0.0 --port 27018
+
+in mongo-shell:
+rs.initiate(
+  {
+    _id: "config-techealth",
+    configsvr: true,
+    members: [
+      { _id : 0, host : "nestor:27018" },
+      { _id : 1, host : "fabio:27018" },
+      { _id : 2, host : "hugo:27018" }
+    ]
+  }
+)
+
+*************************************************************
+
+shard : STEPS
+-- after install mongo and dependencies
+
+mongod --shardsvr --replSet rep-techealth --bind_ip 0.0.0.0 --port 27019
+
+in mongo-shell:
+rs.initiate(
+  {
+    _id : "rep-techealth",
+    members: [
+      { _id : 0, host : "nestor:27019" },
+      { _id : 1, host : "fabio:27019" },
+      { _id : 2, host : "hugo:27019" }
+    ]
+  }
+)
+
+*************************************************************
+
+router : STEPS
+-- after install mongo and dependencies
+
+mongos --configdb config-techealth/nestor:27018,fabio:27018,hugo:27018 --bind_ip 0.0.0.0 --port 27017
+
+in mongo-shell:
+    sh.addShard( "rep-techealth/ubuntu-server-2:27020")
+    sh.enableSharding("<database>")
+    sh.shardCollection("<database>.<collection>")
+
