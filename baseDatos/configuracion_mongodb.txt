@@ -23,7 +23,9 @@ PORTS
 
 port 27017 -> router
 port 27018 -> config-server
-port 27019 -> shard
+port 27019 -> shard-1
+port 27020 -> shard-2
+port 27021 -> shard-3
 
 *************************************************************
 REPLICA SETS
@@ -31,7 +33,9 @@ REPLICA SETS
 config-servers:
     config-techealth
 shards:
-    rep-techealth
+    rep-techealth-1
+    rep-techealth-2
+    rep-techealth-3
 
 *************************************************************
 
@@ -61,16 +65,16 @@ rs.initiate(
 shard : STEPS
 -- after install mongo and dependencies
 
-mongod --shardsvr --replSet rep-techealth --bind_ip 0.0.0.0 --port 27019
+mongod --shardsvr --replSet rep-techealth-1 --bind_ip 0.0.0.0 --port 27019 --dbpath /data/db1
 
 in mongo-shell:
 rs.initiate(
   {
-    _id : "rep-techealth",
+    _id : "rep-techealth-<num>",
     members: [
-      { _id : 0, host : "nestor:27019" },
-      { _id : 1, host : "fabio:27019" },
-      { _id : 2, host : "hugo:27019" }
+      { _id : 0, host : "nestor:<port>" },
+      { _id : 1, host : "fabio:<port>" },
+      { _id : 2, host : "hugo:<port>" }
     ]
   }
 )
@@ -83,7 +87,7 @@ router : STEPS
 mongos --configdb config-techealth/nestor:27018,fabio:27018,hugo:27018 --bind_ip 0.0.0.0 --port 27017
 
 in mongo-shell:
-    sh.addShard( "rep-techealth/ubuntu-server-2:27020")
+    sh.addShard( "rep-techealth/<hostname-shardsvr>:27020")
     sh.enableSharding("<database>")
-    sh.shardCollection("<database>.<collection>")
+    sh.shardCollection("<database>.<collection>", {"key":1})
 
