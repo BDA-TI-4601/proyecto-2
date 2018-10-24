@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_patient: 1
+  diagnose_id: 1
+  level: MyString
+  observation: MyString
+
+two:
+  id_patient: 1
+  diagnose_id: 1
+  level: MyString
+  observation: MyString

@@ -1,0 +1,42 @@
+<%= form_with(model: attention_center, local: true) do |form| %>
+  <% if attention_center.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attention_center.errors.count, "error") %> prohibited this attention_center from being saved:</h2>
+
+      <ul>
+      <% attention_center.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :code %>
+    <%= form.number_field :code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place %>
+    <%= form.text_field :place %>
+  </div>
+
+  <div class="field">
+    <%= form.label :capacity %>
+    <%= form.number_field :capacity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :center_type %>
+    <%= form.text_field :center_type %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

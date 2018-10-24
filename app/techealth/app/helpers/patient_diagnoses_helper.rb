@@ -1,0 +1,2 @@
+module PatientDiagnosesHelper
+end

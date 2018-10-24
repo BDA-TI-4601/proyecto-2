@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id patient:</strong>
+  <%= @treatment_pacient.id_patient %>
+</p>
+
+<p>
+  <strong>Dosis:</strong>
+  <%= @treatment_pacient.dosis %>
+</p>
+
+<p>
+  <strong>Days:</strong>
+  <%= @treatment_pacient.days %>
+</p>
+
+<p>
+  <strong>Secundary effects:</strong>
+  <%= @treatment_pacient.secundary_effects %>
+</p>
+
+<%= link_to 'Edit', edit_treatment_pacient_path(@treatment_pacient) %> |
+<%= link_to 'Back', treatment_pacients_path %>

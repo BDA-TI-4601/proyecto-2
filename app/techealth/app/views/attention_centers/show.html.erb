@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @attention_center.code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @attention_center.name %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @attention_center.place %>
+</p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @attention_center.capacity %>
+</p>
+
+<p>
+  <strong>Center type:</strong>
+  <%= @attention_center.center_type %>
+</p>
+
+<%= link_to 'Edit', edit_attention_center_path(@attention_center) %> |
+<%= link_to 'Back', attention_centers_path %>

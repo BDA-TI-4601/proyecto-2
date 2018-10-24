@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  area: MyString
+  app_date: MyString
+  hour: MyString
+  observation: MyString
+  id: 1
+  status: MyString
+
+two:
+  area: MyString
+  app_date: MyString
+  hour: MyString
+  observation: MyString
+  id: 1
+  status: MyString

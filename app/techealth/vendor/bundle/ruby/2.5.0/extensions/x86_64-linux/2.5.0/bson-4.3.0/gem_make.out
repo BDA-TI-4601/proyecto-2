@@ -1,0 +1,25 @@
+current directory: /home/crimsonking/Desktop/proyecto-2/app/techealth/vendor/bundle/ruby/2.5.0/gems/bson-4.3.0/ext/bson
+/usr/bin/ruby2.5 -r ./siteconf20181024-3797-1mt8lqz.rb extconf.rb
+creating Makefile
+
+current directory: /home/crimsonking/Desktop/proyecto-2/app/techealth/vendor/bundle/ruby/2.5.0/gems/bson-4.3.0/ext/bson
+make "DESTDIR=" clean
+
+current directory: /home/crimsonking/Desktop/proyecto-2/app/techealth/vendor/bundle/ruby/2.5.0/gems/bson-4.3.0/ext/bson
+make "DESTDIR="
+compiling bson_native.c
+In file included from bson_native.c:21:0:
+native-endian.h:196:15: warning: ‘__bson_double_swap_slow’ defined but not used [-Wunused-function]
+ static double __bson_double_swap_slow(double v)
+               ^~~~~~~~~~~~~~~~~~~~~~~
+native-endian.h:169:17: warning: ‘__bson_uint64_swap_slow’ defined but not used [-Wunused-function]
+ static uint64_t __bson_uint64_swap_slow(uint64_t v)
+                 ^~~~~~~~~~~~~~~~~~~~~~~
+native-endian.h:145:17: warning: ‘__bson_uint32_swap_slow’ defined but not used [-Wunused-function]
+ static uint32_t __bson_uint32_swap_slow(uint32_t v)
+                 ^~~~~~~~~~~~~~~~~~~~~~~
+linking shared-object bson_native.so
+
+current directory: /home/crimsonking/Desktop/proyecto-2/app/techealth/vendor/bundle/ruby/2.5.0/gems/bson-4.3.0/ext/bson
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bson_native.so ./.gem.20181024-3797-1m1fxvg

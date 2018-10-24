@@ -1,0 +1,42 @@
+<%= form_with(model: functionary, local: true) do |form| %>
+  <% if functionary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(functionary.errors.count, "error") %> prohibited this functionary from being saved:</h2>
+
+      <ul>
+      <% functionary.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :init_date %>
+    <%= form.text_field :init_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :area %>
+    <%= form.text_field :area %>
+  </div>
+
+  <div class="field">
+    <%= form.label :id_functionary %>
+    <%= form.text_field :id_functionary %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.text_field :type %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

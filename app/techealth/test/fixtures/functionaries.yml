@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  init_date: MyString
+  area: MyString
+  id_functionary: MyString
+  type: 
+
+two:
+  name: MyString
+  init_date: MyString
+  area: MyString
+  id_functionary: MyString
+  type: 

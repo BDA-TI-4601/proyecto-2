@@ -1,0 +1,15 @@
+current directory: /home/crimsonking/Desktop/proyecto-2/app/techealth/vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+/usr/bin/ruby2.5 -r ./siteconf20181024-3797-kfgdej.rb extconf.rb
+creating Makefile
+
+current directory: /home/crimsonking/Desktop/proyecto-2/app/techealth/vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /home/crimsonking/Desktop/proyecto-2/app/techealth/vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.so
+
+current directory: /home/crimsonking/Desktop/proyecto-2/app/techealth/vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20181024-3797-18m3bpu/bindex

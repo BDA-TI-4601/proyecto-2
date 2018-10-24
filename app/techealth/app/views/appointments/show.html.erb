@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @appointment.area %>
+</p>
+
+<p>
+  <strong>App date:</strong>
+  <%= @appointment.app_date %>
+</p>
+
+<p>
+  <strong>Hour:</strong>
+  <%= @appointment.hour %>
+</p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @appointment.observation %>
+</p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @appointment.id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @appointment.status %>
+</p>
+
+<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
+<%= link_to 'Back', appointments_path %>

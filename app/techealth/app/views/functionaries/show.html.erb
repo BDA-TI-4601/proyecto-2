@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @functionary.name %>
+</p>
+
+<p>
+  <strong>Init date:</strong>
+  <%= @functionary.init_date %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @functionary.area %>
+</p>
+
+<p>
+  <strong>Id functionary:</strong>
+  <%= @functionary.id_functionary %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @functionary.type %>
+</p>
+
+<%= link_to 'Edit', edit_functionary_path(@functionary) %> |
+<%= link_to 'Back', functionaries_path %>

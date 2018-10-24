@@ -1,0 +1,2 @@
+module FunctionaryTypesHelper
+end
