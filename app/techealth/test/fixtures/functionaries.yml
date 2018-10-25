@@ -2,14 +2,14 @@
 
 one:
   name: MyString
-  init_date: MyString
+  init_date: 2018-10-24
   area: MyString
   id_functionary: MyString
   type: 
 
 two:
   name: MyString
-  init_date: MyString
+  init_date: 2018-10-24
   area: MyString
   id_functionary: MyString
   type: 
