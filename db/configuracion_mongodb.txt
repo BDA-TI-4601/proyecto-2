@@ -66,6 +66,8 @@ shard : STEPS
 -- after install mongo and dependencies
 
 mongod --shardsvr --replSet rep-techealth-1 --bind_ip 0.0.0.0 --port 27019 --dbpath /data/db1
+mongod --shardsvr --replSet rep-techealth-2 --bind_ip 0.0.0.0 --port 27020 --dbpath /data/db2
+mongod --shardsvr --replSet rep-techealth-3 --bind_ip 0.0.0.0 --port 27021 --dbpath /data/db3
 
 in mongo-shell:
 rs.initiate(
