@@ -5,7 +5,7 @@
 - rails g scaffold Functionary name:string init_date:date area:string id_functionary:string type:string 
 - rails g scaffold Area name:string 
 - rails g scaffold FunctionaryType name:string
-- rails g scaffold IllnessDiagnoses name:string symptoms:string treatments:string
+- rails g scaffold Diagnoses name:string symptoms:string treatments:string
 - rails g scaffold Treatment name:string type:string dosis:string total:integer 
 - rails g scaffold TreatmentType name:string
 - rails g scaffold Patient id:integer name:string birth_date:date blood:string nationality:string residence:string telephone:string 
@@ -19,4 +19,5 @@
 
 ------------------------------------------------------------------------------------
 #Para eliminar scaffolds 
-- rails destroy scaffold IllnessDiagnoses
+- rails destroy scaffold AttentionCenter
+
