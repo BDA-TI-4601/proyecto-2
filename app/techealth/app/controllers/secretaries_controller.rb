@@ -70,6 +70,16 @@ class SecretariesController < ApplicationController
   end
   helper_method :assign_app
 
+  def by_patient
+    @p_id = params[:id_patient]
+    if (@p_id == "")
+      @secretaries = []
+    else
+      @secretaries = Appointment.where(id_patient: @p_id)
+    end
+    render 'index'
+  end
+
   # GET /secretaries/1
   # GET /secretaries/1.json
   def show
