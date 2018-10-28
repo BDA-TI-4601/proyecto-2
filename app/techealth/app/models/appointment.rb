@@ -3,7 +3,7 @@ class Appointment
   field :area, type: String
   field :app_date, type: Date
   field :observation, type: String
-  field :id_app, type: Integer
+  autoincremental :id_app
   field :status, type: String
   field :id_patient, type: Integer
 end
