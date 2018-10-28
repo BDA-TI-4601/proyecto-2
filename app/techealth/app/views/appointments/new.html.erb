@@ -2,4 +2,7 @@
 
 <%= render 'form', appointment: @appointment %>
 
-<%= link_to 'Back', appointments_path %>
+<%= link_to 'Back', 
+  :controller => 'appointment_patients',
+  :action => 'index',
+  :project => @id_patient_actual %>

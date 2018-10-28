@@ -3,7 +3,7 @@
 one:
   id_appointment: 1
   area: MyString
-  app_date: 2018-10-28 01:44:56
+  app_date: 2018-10-28 02:47:37
   observation: MyString
   status: MyString
   id_patient: 1
@@ -12,7 +12,7 @@ one:
 two:
   id_appointment: 1
   area: MyString
-  app_date: 2018-10-28 01:44:56
+  app_date: 2018-10-28 02:47:37
   observation: MyString
   status: MyString
   id_patient: 1

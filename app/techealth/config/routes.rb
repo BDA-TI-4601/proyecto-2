@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
   
+  get 'appointment_patients/index2'
+  get 'appointment_patients/index3'
+  get 'appointment_patients/index4'
+  get 'appointment_patients/delete_app'
+
+  resources :appointment_patients
+  resources :appointments
   root "logins#index"
 
   resources :logins
   resources :diagnoses
-  resources :appointments
   resources :treatments
   resources :users
   resources :patients
   resources :functionaries
   resources :attention_centers
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end

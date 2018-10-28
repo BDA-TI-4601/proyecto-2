@@ -5,6 +5,7 @@ class DiagnosesController < ApplicationController
   # GET /diagnoses.json
   def index
     @diagnoses = Diagnose.all
+    puts "DATA: #{params[:id]}"
   end
 
   # GET /diagnoses/1

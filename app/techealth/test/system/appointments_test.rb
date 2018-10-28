@@ -18,7 +18,8 @@ class AppointmentsTest < ApplicationSystemTestCase
     fill_in "Area", with: @appointment.area
     fill_in "Id Appointment", with: @appointment.id_appointment
     fill_in "Id Diagnoses", with: @appointment.id_diagnoses
-    fill_in "Observations", with: @appointment.observations
+    fill_in "Id Patient", with: @appointment.id_patient
+    fill_in "Observation", with: @appointment.observation
     fill_in "Status", with: @appointment.status
     click_on "Create Appointment"
 
@@ -34,7 +35,8 @@ class AppointmentsTest < ApplicationSystemTestCase
     fill_in "Area", with: @appointment.area
     fill_in "Id Appointment", with: @appointment.id_appointment
     fill_in "Id Diagnoses", with: @appointment.id_diagnoses
-    fill_in "Observations", with: @appointment.observations
+    fill_in "Id Patient", with: @appointment.id_patient
+    fill_in "Observation", with: @appointment.observation
     fill_in "Status", with: @appointment.status
     click_on "Update Appointment"
 

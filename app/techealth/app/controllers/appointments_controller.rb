@@ -24,16 +24,40 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
-    @appointment = Appointment.new(appointment_params)
-
-    respond_to do |format|
-      if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
-        format.json { render :show, status: :created, location: @appointment }
-      else
-        format.html { render :new }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
-      end
+    p_id_appointment = params[:appointment][:id_appointment].to_i
+    p_area = params[:appointment][:area]
+    p_year = params[:appointment]["app_date(1i)"].to_i
+    p_month = params[:appointment]["app_date(2i)"].to_i
+    p_day = params[:appointment]["app_date(3i)"].to_i
+    p_hour = params[:appointment]["app_date(4i)"].to_i
+    p_minute = params[:appointment]["app_date(5i)"].to_i
+    p_observation = params[:appointment][:observation]
+    p_id_patient = params[:appointment][:id_patient].to_i
+    p_id_diagnoses = params[:appointment][:id_diagnoses].split(',')
+    p_status = params[:status]
+    
+    @appointment = Appointment.new(
+      id_appointment: p_id_appointment,
+      area: p_area,
+      app_date: Time.new(
+        p_year,
+        p_month,
+        p_day,
+        p_hour,
+        p_minute
+      ),
+      observation: p_observation,
+      status: p_status,
+      id_patient: p_id_patient,
+      id_diagnoses: p_id_diagnoses
+    )
+    
+    if @appointment.save
+      flash.now[:error] = "Appointment assigned"
+      redirect_to controller: 'appointment_patients', id: p_id_patient and return
+    else
+      flash.now[:error] = "FAILED!!"
+      redirect_to controller: 'appointment_patients', id: p_id_patient and return
     end
   end
 
@@ -65,10 +89,5 @@ class AppointmentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_appointment
       @appointment = Appointment.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def appointment_params
-      params.require(:appointment).permit(:id_appointment, :area, :observations, :status, :app_date, :id_diagnoses)
     end
 end

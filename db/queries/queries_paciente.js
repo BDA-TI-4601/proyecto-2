@@ -10,7 +10,7 @@ db.Appointment.insert(
 
 /* Cancelar cita */
 db.Appointment.update(
-	{"app_number": }, 
+	{"app_number": id
 	{ $set: 
 		{
 			"status":"Cancelada"

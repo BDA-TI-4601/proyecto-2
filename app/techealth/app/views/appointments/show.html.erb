@@ -11,8 +11,13 @@
 </p>
 
 <p>
-  <strong>Observations:</strong>
-  <%= @appointment.observations %>
+  <strong>App date:</strong>
+  <%= @appointment.app_date %>
+</p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @appointment.observation %>
 </p>
 
 <p>
@@ -21,8 +26,8 @@
 </p>
 
 <p>
-  <strong>App date:</strong>
-  <%= @appointment.app_date %>
+  <strong>Id patient:</strong>
+  <%= @appointment.id_patient %>
 </p>
 
 <p>
@@ -30,5 +35,7 @@
   <%= @appointment.id_diagnoses %>
 </p>
 
-<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
-<%= link_to 'Back', appointments_path %>
+<%= link_to 'Back', 
+  :controller => 'appointment_patients',
+  :action => 'index',
+  :id => @id_patient_actual %>
