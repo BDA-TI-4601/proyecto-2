@@ -26,7 +26,15 @@ class LoginsController < ApplicationController
           @actual_user = Patient.find_by(id_patient: @user_exist.id_user)
           redirect_to controller: 'appointment_patients', id: @actual_user.id_patient and return
         else
-          redirect_to logins_path, notice: "USER TYPE: FUNCTIONARY" and return
+          @actual_user = Functionary.find_by(identification: @user_exist.id_user)
+          type_functionary = @actual_user.type
+          if (type_functionary == 'Secretario')
+            redirect_to secretaries_path, notice: "USER TYPE: Secretario" and return
+          elsif (type_functionary == 'Doctor')
+            redirect_to doctors_path, notice: "USER TYPE: Doctor" and return
+          elsif (type_functionary == 'Administrador')
+            redirect_to administrators_path, notice: "USER TYPE: Administrador" and return
+          end
         end
       else
         redirect_to logins_path, notice: "WRONG PASSWORD" and return

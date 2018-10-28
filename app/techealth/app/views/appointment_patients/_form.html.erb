@@ -12,13 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :id_appointment %>
-    <%= form.number_field :id_appointment %>
-  </div>
-
-  <div class="field">
     <%= form.label :area %>
-    <%= form.text_field :area %>
+    <select name="area">
+      <option value="Administrativa" selected="selected">Administrativa</option>
+      <option value="Emergencias">Emergencias</option>
+      <option value="Ginecologia">Ginecologia</option>
+      <option value="Oncologia">Oncologia</option>
+      <option value="Dermatologia">Dermatologia</option>
+      <option value="Ortopedia">Ortopedia</option>
+    </select>
   </div>
 
   <div class="field">
@@ -33,17 +35,14 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.text_field :status %>
+    <select name="status">
+      <option value="Registrada" selected="selected">Registrada</option>
+    </select>
   </div>
 
   <div class="field">
     <%= form.label :id_patient %>
     <%= form.number_field :id_patient, :readonly => true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :id_diagnoses %>
-    <%= form.text_field :id_diagnoses %>
   </div>
 
   <div class="actions">

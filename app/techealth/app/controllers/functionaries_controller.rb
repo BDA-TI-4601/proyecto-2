@@ -24,10 +24,39 @@ class FunctionariesController < ApplicationController
   # POST /functionaries
   # POST /functionaries.json
   def create
-    @functionary = Functionary.new(functionary_params)
+    p_name = params[:functionary][:name]
+    p_year = params[:functionary]['init_date(1i)'].to_i
+    p_month = params[:functionary]['init_date(2i)'].to_i
+    p_day = params[:functionary]['init_date(3i)'].to_i
+    p_area = params[:area]
+    p_identification = params[:functionary][:identification]
+    p_type = params[:type]
+    p_institution = params[:institution]
+    p_username = params[:functionary][:username]
+    p_password = params[:functionary][:password]
+    
+    @functionary = Functionary.new(
+      name: p_name,
+      init_date: Date.new(
+        p_year,
+        p_month,
+        p_day
+      ),
+      area: p_area,
+      identification: p_identification,
+      type: p_type,
+      institution: p_institution 
+    )
+
+    @new_user = User.new(
+      id_user: p_identification,
+      username: p_username,
+      password: p_password
+    )
 
     respond_to do |format|
       if @functionary.save
+        @new_user.save
         format.html { redirect_to @functionary, notice: 'Functionary was successfully created.' }
         format.json { render :show, status: :created, location: @functionary }
       else
