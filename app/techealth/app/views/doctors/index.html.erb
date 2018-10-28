@@ -1,0 +1,100 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Doctor Module</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id appointment</th>
+      <th>Area</th>
+      <th>App date</th>
+      <th>Observation</th>
+      <th>Status</th>
+      <th>Id patient</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @doctors.each do |doctor| %>
+      <tr>
+        <td><%= doctor.id_appointment %></td>
+        <td><%= doctor.area %></td>
+        <td><%= doctor.app_date %></td>
+        <td><%= doctor.observation %></td>
+        <td><%= doctor.status %></td>
+        <td><%= doctor.id_patient %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<form action = "/doctors/index2" > 
+  <br>
+  <input type="hidden" name="id" value="<%= @id_patient_actual %>" readonly="true" >
+  <br>
+  Please enter initial date. (yyyy-mm-dd)
+  <br>
+  <input type="text" name="initial_date">
+  <br>  
+  Please enter final date. (yyyy-mm-dd)
+  <br>  
+  <input type="text" name="final_date">
+  <br>
+  <input type="submit" value="Filter by date"/>
+</form>
+
+<br>
+
+<form action = "/doctors/index3" >
+  <br>
+  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
+  <br>
+  Please enter status of appointment to filter
+  <br>
+  <select name="status">
+      <option value="Registrada" selected="selected">Registrada</option>
+      <option value="Cancelada por paciente">Cancelada por paciente</option>
+      <option value="Cancelada por centro medico">Cancelada por centro medico</option>
+      <option value="Asignada">Asignada</option>
+      <option value="Realizada">Realizada</option>
+    </select>  
+  <input type="submit" value="Filter by status"/>
+</form>
+
+<br>
+
+<form action = "/doctors/index4">
+  <br>
+  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
+  <br>
+  Please enter area of appointment to filter
+  <br>
+  <select name="area">
+      <option value="Administrativa" selected="selected">Administrativa</option>
+      <option value="Emergencias">Emergencias</option>
+      <option value="Ginecologia">Ginecologia</option>
+      <option value="Oncologia">Oncologia</option>
+      <option value="Dermatologia">Dermatologia</option>
+      <option value="Ortopedia">Ortopedia</option>
+    </select>  
+  <input type="submit" value="Filter by area"/>
+</form>
+
+<br>
+
+
+<%= link_to 'Register new diagnose', 
+  :controller => 'doctors',
+  :action => 'new',
+  :id => @id_patient_actual %>
+
+<br>
+
+<%= link_to 'Register new treatment', 
+  :controller => 'doctors',
+  :action => 'new',
+  :id => @id_patient_actual %>

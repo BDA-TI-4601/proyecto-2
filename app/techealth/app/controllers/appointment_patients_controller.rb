@@ -3,7 +3,7 @@ class AppointmentPatientsController < ApplicationController
 
   # GET /appointment_patients
   # GET /appointment_patients.json
-  def index
+  def index 
     @id_patient_actual = params[:id]
     @appointment_patients = Appointment.where(id_patient: @id_patient_actual)
     render 'index'
