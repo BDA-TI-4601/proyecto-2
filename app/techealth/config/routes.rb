@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'secretaries/index4'
   get 'secretaries/delete_app'
   get 'secretaries/assign_app'
+  get '/secretaries/by_patient'
 
   root "logins#index"
 

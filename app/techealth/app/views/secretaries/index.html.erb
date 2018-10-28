@@ -96,5 +96,15 @@
 
 <br>
 
+<form action = "/secretaries/by_patient" >
+  Please enter the id patient to filter
+  <br>
+  <input type="text" name="id_patient">
+  <br>  
+  <input type="submit" value="Assign"/>
+</form>
+
+<br>
+
 <%= link_to 'New appointment', new_appointment_path %>
 <%= link_to 'Close', logins_path %>
