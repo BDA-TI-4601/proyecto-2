@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   get 'appointment_patients/index2'
   get 'appointment_patients/index3'
   get 'appointment_patients/index4'
-  get 'appointment_patients/delete_app'
+  get 'doctors/index2'
+  get 'doctors/index3'
+  get 'doctors/index4'
+  get 'doctors/delete_app'
+  root "logins#index"
 
   get 'secretaries/index2'
   get 'secretaries/index3'

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_appointment: 1
+  area: MyString
+  app_date: 2018-10-28 10:05:20
+  observation: MyString
+  status: MyString
+  id_patient_integer: MyString
+  id_diagnoses: 
+
+two:
+  id_appointment: 1
+  area: MyString
+  app_date: 2018-10-28 10:05:20
+  observation: MyString
+  status: MyString
+  id_patient_integer: MyString
+  id_diagnoses: 
