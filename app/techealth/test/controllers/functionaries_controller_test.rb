@@ -17,7 +17,7 @@ class FunctionariesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create functionary" do
     assert_difference('Functionary.count') do
-      post functionaries_url, params: { functionary: { area: @functionary.area, id_functionary: @functionary.id_functionary, init_date: @functionary.init_date, name: @functionary.name, type: @functionary.type } }
+      post functionaries_url, params: { functionary: { area: @functionary.area, identification: @functionary.identification, init_date: @functionary.init_date, institution: @functionary.institution, name: @functionary.name, type: @functionary.type } }
     end
 
     assert_redirected_to functionary_url(Functionary.last)
@@ -34,7 +34,7 @@ class FunctionariesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update functionary" do
-    patch functionary_url(@functionary), params: { functionary: { area: @functionary.area, id_functionary: @functionary.id_functionary, init_date: @functionary.init_date, name: @functionary.name, type: @functionary.type } }
+    patch functionary_url(@functionary), params: { functionary: { area: @functionary.area, identification: @functionary.identification, init_date: @functionary.init_date, institution: @functionary.institution, name: @functionary.name, type: @functionary.type } }
     assert_redirected_to functionary_url(@functionary)
   end
 

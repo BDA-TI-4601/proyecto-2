@@ -16,7 +16,7 @@ class PatientsTest < ApplicationSystemTestCase
 
     fill_in "Birth Date", with: @patient.birth_date
     fill_in "Blood", with: @patient.blood
-    fill_in "Id", with: @patient.id
+    fill_in "Id Patient", with: @patient.id_patient
     fill_in "Name", with: @patient.name
     fill_in "Nationality", with: @patient.nationality
     fill_in "Residence", with: @patient.residence
@@ -33,7 +33,7 @@ class PatientsTest < ApplicationSystemTestCase
 
     fill_in "Birth Date", with: @patient.birth_date
     fill_in "Blood", with: @patient.blood
-    fill_in "Id", with: @patient.id
+    fill_in "Id Patient", with: @patient.id_patient
     fill_in "Name", with: @patient.name
     fill_in "Nationality", with: @patient.nationality
     fill_in "Residence", with: @patient.residence

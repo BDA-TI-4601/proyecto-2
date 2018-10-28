@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Id</th>
+      <th>Id patient</th>
       <th>Name</th>
       <th>Birth date</th>
       <th>Blood</th>
@@ -19,7 +19,7 @@
   <tbody>
     <% @patients.each do |patient| %>
       <tr>
-        <td><%= patient.id %></td>
+        <td><%= patient.id_patient %></td>
         <td><%= patient.name %></td>
         <td><%= patient.birth_date %></td>
         <td><%= patient.blood %></td>

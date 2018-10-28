@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
+  id_patient: 1
   name: MyString
-  birth_date: 2018-10-24
+  birth_date: 2018-10-27
   blood: MyString
   nationality: MyString
   residence: MyString
-  telephone: MyString
+  telephone: 
 
 two:
-  id: 1
+  id_patient: 1
   name: MyString
-  birth_date: 2018-10-24
+  birth_date: 2018-10-27
   blood: MyString
   nationality: MyString
   residence: MyString
-  telephone: MyString
+  telephone: 

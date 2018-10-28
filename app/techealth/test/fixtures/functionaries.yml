@@ -2,14 +2,16 @@
 
 one:
   name: MyString
-  init_date: 2018-10-24
+  init_date: 2018-10-27
   area: MyString
-  id_functionary: MyString
+  identification: 1
   type: 
+  institution: MyString
 
 two:
   name: MyString
-  init_date: 2018-10-24
+  init_date: 2018-10-27
   area: MyString
-  id_functionary: MyString
+  identification: 1
   type: 
+  institution: MyString

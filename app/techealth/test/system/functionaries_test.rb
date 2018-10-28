@@ -15,8 +15,9 @@ class FunctionariesTest < ApplicationSystemTestCase
     click_on "New Functionary"
 
     fill_in "Area", with: @functionary.area
-    fill_in "Id Functionary", with: @functionary.id_functionary
+    fill_in "Identification", with: @functionary.identification
     fill_in "Init Date", with: @functionary.init_date
+    fill_in "Institution", with: @functionary.institution
     fill_in "Name", with: @functionary.name
     fill_in "Type", with: @functionary.type
     click_on "Create Functionary"
@@ -30,8 +31,9 @@ class FunctionariesTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Area", with: @functionary.area
-    fill_in "Id Functionary", with: @functionary.id_functionary
+    fill_in "Identification", with: @functionary.identification
     fill_in "Init Date", with: @functionary.init_date
+    fill_in "Institution", with: @functionary.institution
     fill_in "Name", with: @functionary.name
     fill_in "Type", with: @functionary.type
     click_on "Update Functionary"

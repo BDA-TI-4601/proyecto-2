@@ -8,8 +8,9 @@
       <th>Name</th>
       <th>Init date</th>
       <th>Area</th>
-      <th>Id functionary</th>
+      <th>Identification</th>
       <th>Type</th>
+      <th>Institution</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,8 +21,9 @@
         <td><%= functionary.name %></td>
         <td><%= functionary.init_date %></td>
         <td><%= functionary.area %></td>
-        <td><%= functionary.id_functionary %></td>
+        <td><%= functionary.identification %></td>
         <td><%= functionary.type %></td>
+        <td><%= functionary.institution %></td>
         <td><%= link_to 'Show', functionary %></td>
         <td><%= link_to 'Edit', edit_functionary_path(functionary) %></td>
         <td><%= link_to 'Destroy', functionary, method: :delete, data: { confirm: 'Are you sure?' } %></td>

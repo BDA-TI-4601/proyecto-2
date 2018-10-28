@@ -11,23 +11,23 @@
 </p>
 
 <p>
-  <strong>Hour:</strong>
-  <%= @appointment.hour %>
-</p>
-
-<p>
   <strong>Observation:</strong>
   <%= @appointment.observation %>
 </p>
 
 <p>
-  <strong>Id:</strong>
-  <%= @appointment.id %>
+  <strong>Id app:</strong>
+  <%= @appointment.id_app %>
 </p>
 
 <p>
   <strong>Status:</strong>
   <%= @appointment.status %>
+</p>
+
+<p>
+  <strong>Id patient:</strong>
+  <%= @appointment.id_patient %>
 </p>
 
 <%= link_to 'Edit', edit_appointment_path(@appointment) %> |

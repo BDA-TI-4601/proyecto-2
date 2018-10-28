@@ -24,16 +24,7 @@ class FunctionariesController < ApplicationController
   # POST /functionaries
   # POST /functionaries.json
   def create
-    name = params[:functionary][:name]
-    year = params[:functionary]["init_date(1i)"]
-    month = params[:functionary]["init_date(2i)"]
-    day = params[:functionary]["init_date(3i)"]  
-    area = params[:functionary][:area]
-    id_functionary = params[:functionary][:id_functionary]
-    type = params[:functionary][:type]
-   # name_array = name.split(',')
-    newdate = Date.new(year.to_i, month.to_i, day.to_i)
-    @functionary = Functionary.new(name: name, init_date: newdate, area: area, id_functionary: id_functionary, type: type)
+    @functionary = Functionary.new(functionary_params)
 
     respond_to do |format|
       if @functionary.save
@@ -78,6 +69,6 @@ class FunctionariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def functionary_params
-      params.require(:functionary).permit(:name, :init_date, :area, :id_functionary, :type)
+      params.require(:functionary).permit(:name, :init_date, :area, :identification, :type, :institution)
     end
 end

@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :init_date %>
-    <%= form.date_select :init_date, start_year: 1970, end_year: 2018 %>
+    <%= form.date_select :init_date %>
   </div>
 
   <div class="field">
@@ -27,13 +27,18 @@
   </div>
 
   <div class="field">
-    <%= form.label :id_functionary %>
-    <%= form.text_field :id_functionary %>
+    <%= form.label :identification %>
+    <%= form.number_field :identification %>
   </div>
 
   <div class="field">
     <%= form.label :type %>
     <%= form.text_field :type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :institution %>
+    <%= form.text_field :institution %>
   </div>
 
   <div class="actions">

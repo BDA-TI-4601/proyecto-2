@@ -14,8 +14,11 @@ class TreatmentsTest < ApplicationSystemTestCase
     visit treatments_url
     click_on "New Treatment"
 
+    fill_in "Days", with: @treatment.days
     fill_in "Dosis", with: @treatment.dosis
+    fill_in "Id Patient", with: @treatment.id_patient
     fill_in "Name", with: @treatment.name
+    fill_in "Secundary Effects", with: @treatment.secundary_effects
     fill_in "Total", with: @treatment.total
     fill_in "Type", with: @treatment.type
     click_on "Create Treatment"
@@ -28,8 +31,11 @@ class TreatmentsTest < ApplicationSystemTestCase
     visit treatments_url
     click_on "Edit", match: :first
 
+    fill_in "Days", with: @treatment.days
     fill_in "Dosis", with: @treatment.dosis
+    fill_in "Id Patient", with: @treatment.id_patient
     fill_in "Name", with: @treatment.name
+    fill_in "Secundary Effects", with: @treatment.secundary_effects
     fill_in "Total", with: @treatment.total
     fill_in "Type", with: @treatment.type
     click_on "Update Treatment"

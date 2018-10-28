@@ -7,10 +7,10 @@
     <tr>
       <th>Area</th>
       <th>App date</th>
-      <th>Hour</th>
       <th>Observation</th>
-      <th>Id</th>
+      <th>Id app</th>
       <th>Status</th>
+      <th>Id patient</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,10 +20,10 @@
       <tr>
         <td><%= appointment.area %></td>
         <td><%= appointment.app_date %></td>
-        <td><%= appointment.hour %></td>
         <td><%= appointment.observation %></td>
-        <td><%= appointment.id %></td>
+        <td><%= appointment.id_app %></td>
         <td><%= appointment.status %></td>
+        <td><%= appointment.id_patient %></td>
         <td><%= link_to 'Show', appointment %></td>
         <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
         <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

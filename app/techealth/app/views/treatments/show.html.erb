@@ -20,5 +20,20 @@
   <%= @treatment.total %>
 </p>
 
+<p>
+  <strong>Id patient:</strong>
+  <%= @treatment.id_patient %>
+</p>
+
+<p>
+  <strong>Secundary effects:</strong>
+  <%= @treatment.secundary_effects %>
+</p>
+
+<p>
+  <strong>Days:</strong>
+  <%= @treatment.days %>
+</p>
+
 <%= link_to 'Edit', edit_treatment_path(@treatment) %> |
 <%= link_to 'Back', treatments_path %>

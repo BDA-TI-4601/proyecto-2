@@ -5,9 +5,15 @@ one:
   type: 
   dosis: MyString
   total: 1
+  id_patient: 1
+  secundary_effects: MyString
+  days: 1
 
 two:
   name: MyString
   type: 
   dosis: MyString
   total: 1
+  id_patient: 1
+  secundary_effects: MyString
+  days: 1

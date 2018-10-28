@@ -2,16 +2,16 @@
 
 one:
   area: MyString
-  app_date: 2018-10-24
-  hour: 2018-10-24 19:44:03
+  app_date: 2018-10-27
   observation: MyString
-  id: 1
+  id_app: 1
   status: MyString
+  id_patient: 1
 
 two:
   area: MyString
-  app_date: 2018-10-24
-  hour: 2018-10-24 19:44:03
+  app_date: 2018-10-27
   observation: MyString
-  id: 1
+  id_app: 1
   status: MyString
+  id_patient: 1
