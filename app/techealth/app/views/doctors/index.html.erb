@@ -86,15 +86,41 @@
 
 <br>
 
+<form action = "/doctors/show" >
+  <br>
+  Show information of the appointment id:
+  <br>
+  <input type="text" name="app_id">
+  <br>  
+  <input type="submit" value="Show"/>
+</form>
+
+<br>
+
 
 <%= link_to 'Register new diagnose', 
-  :controller => 'doctors',
-  :action => 'new',
-  :id => @id_patient_actual %>
+  :controller => 'diagnoses',
+  :action => 'new' %>
 
 <br>
 
 <%= link_to 'Register new treatment', 
-  :controller => 'doctors',
-  :action => 'new',
-  :id => @id_patient_actual %>
+  :controller => 'treatments',
+  :action => 'new' %>
+
+<br>
+<%= link_to 'Show diagnoses catalog', 
+  :controller => 'diagnoses',
+  :action => 'index' %>
+
+<br>
+
+<%= link_to 'Show treatments catalog', 
+  :controller => 'treatments',
+  :action => 'index' %>
+
+<br>
+
+<%= link_to 'Log Out', 
+  :controller => 'logins',
+  :action => 'index' %>

@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :id_diagnose %>
-    <%= form.number_field :id_diagnose %>
-  </div>
-
-  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
@@ -28,7 +23,11 @@
 
   <div class="field">
     <%= form.label :level %>
-    <%= form.text_field :level %>
+    <select name="level">
+      <option value="Leve" selected="selected">Leve</option>
+      <option value="Grave">Grave</option>
+      <option value="Muy Grave">Muy Grave</option>
+    </select>
   </div>
 
   <div class="field">

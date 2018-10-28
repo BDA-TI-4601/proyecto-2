@@ -40,11 +40,9 @@ class DiagnosesController < ApplicationController
     )
     respond_to do |format|
       if @diagnosis.save
-        format.html { redirect_to @diagnosis, notice: 'Diagnose was successfully created.' }
-        format.json { render :show, status: :created, location: @diagnosis }
+        redirect_to controller: "doctors" and return
       else
-        format.html { render :new }
-        format.json { render json: @diagnosis.errors, status: :unprocessable_entity }
+        redirect_to controller: "doctors", notice: "Unsuccessful..." and return
       end
     end
   end

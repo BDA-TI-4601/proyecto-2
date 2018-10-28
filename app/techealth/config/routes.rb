@@ -6,9 +6,6 @@ Rails.application.routes.draw do
   get 'doctors/index2'
   get 'doctors/index3'
   get 'doctors/index4'
-  get 'doctors/delete_app'
-  root "logins#index"
-
   get 'secretaries/index2'
   get 'secretaries/index3'
   get 'secretaries/index4'
@@ -17,6 +14,7 @@ Rails.application.routes.draw do
 
   root "logins#index"
 
+  resources :doctors
   resources :secretaries
   resources :appointment_patients
   resources :appointments
