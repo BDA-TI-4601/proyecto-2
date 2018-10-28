@@ -33,7 +33,11 @@
 
   <div class="field">
     <%= form.label :center_type %>
-    <%= form.text_field :center_type %>
+    <select name="center_type">
+      <option value="EBAIS" selected="selected">EBAIS</option>
+      <option value="Hospital">Hospital</option>
+      <option value="Clinica">Clinica</option>
+    </select>
   </div>
 
   <div class="actions">

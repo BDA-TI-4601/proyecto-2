@@ -23,7 +23,14 @@
 
   <div class="field">
     <%= form.label :area %>
-    <%= form.text_field :area %>
+    <select name="area">
+      <option value="Administrativa" selected="selected">Administrativa</option>
+      <option value="Emergencias">Emergencias</option>
+      <option value="Ginecologia">Ginecologia</option>
+      <option value="Oncologia">Oncologia</option>
+      <option value="Dermatologia">Dermatologia</option>
+      <option value="Ortopedia">Ortopedia</option>
+    </select>
   </div>
 
   <div class="field">
@@ -33,12 +40,30 @@
 
   <div class="field">
     <%= form.label :type %>
-    <%= form.text_field :type %>
+    <select name="type">
+      <option value="Doctor" selected="selected">Doctor</option>
+      <option value="Secretario">Secretario</option>
+      <option value="Administrador">Administrador</option>
+    </select>
   </div>
 
   <div class="field">
     <%= form.label :institution %>
-    <%= form.text_field :institution %>
+    <select name="institution">
+      <option value="EBAIS" selected="selected">EBAIS</option>
+      <option value="Hospital">Hospital</option>
+      <option value="Clinica">Clinica</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
   </div>
 
   <div class="actions">

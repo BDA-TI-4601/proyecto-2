@@ -5,7 +5,6 @@ class DiagnosesController < ApplicationController
   # GET /diagnoses.json
   def index
     @diagnoses = Diagnose.all
-    puts "DATA: #{params[:id]}"
   end
 
   # GET /diagnoses/1
@@ -25,8 +24,20 @@ class DiagnosesController < ApplicationController
   # POST /diagnoses
   # POST /diagnoses.json
   def create
-    @diagnosis = Diagnose.new(diagnosis_params)
-
+    p_id_diagnose = params[:diagnose][:id_diagnose].to_i
+    p_name = params[:diagnose][:name]
+    p_symptoms = params[:diagnose][:symptoms].split(',')
+    p_level = params[:diagnose][:level]
+    p_observations = params[:diagnose][:observations]
+    p_treatments = params[:diagnose][:id_treatments].split(',')
+    @diagnosis = Diagnose.new(
+      id_diagnose: p_id_diagnose,
+      name: p_name,
+      symptoms: p_symptoms,
+      level: p_level,
+      observations: p_observations,
+      id_treatments: p_treatments
+    )
     respond_to do |format|
       if @diagnosis.save
         format.html { redirect_to @diagnosis, notice: 'Diagnose was successfully created.' }
@@ -41,8 +52,21 @@ class DiagnosesController < ApplicationController
   # PATCH/PUT /diagnoses/1
   # PATCH/PUT /diagnoses/1.json
   def update
+    p_id_diagnose = params[:diagnose][:id_diagnose].to_i
+    p_name = params[:diagnose][:name]
+    p_symptoms = params[:diagnose][:symptoms].split(',')
+    p_level = params[:diagnose][:level]
+    p_observations = params[:diagnose][:observations]
+    p_treatments = params[:diagnose][:id_treatments].split(',')
     respond_to do |format|
-      if @diagnosis.update(diagnosis_params)
+      if @diagnosis.update(
+        id_diagnose: p_id_diagnose,
+        name: p_name,
+        symptoms: p_symptoms,
+        level: p_level,
+        observations: p_observations,
+        id_treatments: p_treatments
+        )
         format.html { redirect_to @diagnosis, notice: 'Diagnose was successfully updated.' }
         format.json { render :show, status: :ok, location: @diagnosis }
       else

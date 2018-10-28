@@ -1,39 +1,105 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Appointment</h1>
+
 <p>
   <strong>Id appointment:</strong>
-  <%= @appointment_patient.id_appointment %>
+  <%= @appointment.id_appointment %>
 </p>
 
 <p>
   <strong>Area:</strong>
-  <%= @appointment_patient.area %>
+  <%= @appointment.area %>
 </p>
 
 <p>
   <strong>App date:</strong>
-  <%= @appointment_patient.app_date %>
+  <%= @appointment.app_date %>
 </p>
 
 <p>
   <strong>Observation:</strong>
-  <%= @appointment_patient.observation %>
+  <%= @appointment.observation %>
 </p>
 
 <p>
   <strong>Status:</strong>
-  <%= @appointment_patient.status %>
+  <%= @appointment.status %>
 </p>
 
 <p>
   <strong>Id patient:</strong>
-  <%= @appointment_patient.id_patient %>
+  <%= @appointment.id_patient %>
 </p>
 
 <p>
   <strong>Id diagnoses:</strong>
-  <%= @appointment_patient.id_diagnoses %>
+  <%= @appointment.id_diagnoses %>
 </p>
 
-<%= link_to 'Edit', edit_appointment_patient_path(@appointment_patient) %> |
-<%= link_to 'Back', appointment_patients_path %>
+<br>
+<h1>Diagnoses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id diagnose</th>
+      <th>Name</th>
+      <th>Symptoms</th>
+      <th>Level</th>
+      <th>Observations</th>
+      <th>Id treatments</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @diagnoses.each do |diagnosis| %>
+      <tr>
+        <td><%= diagnosis.id_diagnose %></td>
+        <td><%= diagnosis.name %></td>
+        <td><%= diagnosis.symptoms %></td>
+        <td><%= diagnosis.level %></td>
+        <td><%= diagnosis.observations %></td>
+        <td><%= diagnosis.id_treatments %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<h1>Treatments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Id treatment</th>
+      <th>Type</th>
+      <th>Dosis</th>
+      <th>Total</th>
+      <th>Secondary effects</th>
+      <th>Days</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @treatments.each do |treatment| %>
+      <tr>
+        <td><%= treatment.name %></td>
+        <td><%= treatment.id_treatment %></td>
+        <td><%= treatment.type %></td>
+        <td><%= treatment.dosis %></td>
+        <td><%= treatment.total %></td>
+        <td><%= treatment.secondary_effects %></td>
+        <td><%= treatment.days %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', 
+  :controller => 'appointment_patients',
+  :action => 'index',
+  :id => @id_patient_actual %>

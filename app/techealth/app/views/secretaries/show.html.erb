@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id appointment:</strong>
+  <%= @secretary.id_appointment %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @secretary.area %>
+</p>
+
+<p>
+  <strong>App date:</strong>
+  <%= @secretary.app_date %>
+</p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @secretary.observation %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @secretary.status %>
+</p>
+
+<p>
+  <strong>Id patient:</strong>
+  <%= @secretary.id_patient %>
+</p>
+
+<%= link_to 'Edit', edit_secretary_path(@secretary) %> |
+<%= link_to 'Back', secretaries_path %>

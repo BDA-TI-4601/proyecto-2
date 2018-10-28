@@ -42,9 +42,11 @@ class AppointmentPatientsController < ApplicationController
   helper_method :index4
 
   def delete_app
-    @id_patient_actual = params[:id]
     @p_app_id = params[:app_id]
-    Appointment.where(id_appointment: @p_app_id).update(status: 'Cancelada por paciente')
+    if (@p_app_id == "")
+    else
+      Appointment.where(id_appointment: @p_app_id).update(status: 'Cancelada por paciente')
+    end
     @appointment_patients = Appointment.all
     render 'index'
   end
@@ -53,8 +55,25 @@ class AppointmentPatientsController < ApplicationController
   # GET /appointment_patients/1
   # GET /appointment_patients/1.json
   def show
-    #puts "DATA: #{@appointment_patient.id_patient}"
-    #@id_patient_actual = @appointment_patient.id_patient
+    p_id = params[:app_id]
+    @appointment = Appointment.find_by(id_appointment: p_id)
+    @id_patient_actual = @appointment.id_patient
+    list = @appointment.id_diagnoses
+    temp_treats = []
+    @diagnoses = []
+    if list.nil?
+      @diagnoses = []
+      @treatments = []
+    else
+      list.each do |i|
+        @diagnoses += [Diagnose.find_by(id_diagnose: i)]
+        temp_treats += Diagnose.find_by(id_diagnose: i).id_treatments
+      end
+      @treatments = []
+      temp_treats.each do |j|
+        @treatments += [Treatment.find_by(id_treatment: j)]
+      end
+    end
   end
 
   # GET /appointment_patients/new
@@ -72,7 +91,7 @@ class AppointmentPatientsController < ApplicationController
   # POST /appointments.json
   def create
     p_id_appointment = params[:appointment_patient][:id_appointment].to_i
-    p_area = params[:appointment_patient][:area]
+    p_area = params[:area]
     p_year = params[:appointment_patient]["app_date(1i)"].to_i
     p_month = params[:appointment_patient]["app_date(2i)"].to_i
     p_day = params[:appointment_patient]["app_date(3i)"].to_i
@@ -80,7 +99,7 @@ class AppointmentPatientsController < ApplicationController
     p_minute = params[:appointment_patient]["app_date(5i)"].to_i
     p_observation = params[:appointment_patient][:observation]
     p_id_patient = params[:appointment_patient][:id_patient].to_i
-    p_id_diagnoses = params[:appointment_patient][:id_diagnoses].split(',')
+    p_id_diagnoses = params[:appointment_patient][:id_diagnoses]
     p_status = params[:status]
     
     @appointment = Appointment.new(
@@ -100,9 +119,9 @@ class AppointmentPatientsController < ApplicationController
     )
     
     if @appointment.save
-      redirect_to controller: 'appointment_patients', id: p_id_patient, status: "SUCCESSFUL" and return
+      redirect_to controller: 'appointment_patients', id: p_id_patient and return
     else
-      redirect_to controller: 'appointment_patients', id: p_id_patient, status: "ERROR" and return
+      redirect_to controller: 'appointment_patients', id: p_id_patient and return
     end
   end
 

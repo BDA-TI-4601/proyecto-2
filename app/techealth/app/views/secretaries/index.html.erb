@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Appointment Patients</h1>
+<h1>Secretary module</h1>
 
-<form action = "/appointment_patients/index2" >
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
+<form action = "/secretaries/index2" >
   <input type="hidden" name="initial_date" value="1900-1-1">
   <input type="hidden" name="final_date" value="2100-1-1">
   <input type="submit" value="Show all"/>
@@ -18,21 +17,19 @@
       <th>Observation</th>
       <th>Status</th>
       <th>Id patient</th>
-      <th>Id diagnoses</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @appointment_patients.each do |appointment_patient| %>
+    <% @secretaries.each do |secretary| %>
       <tr>
-        <td><%= appointment_patient.id_appointment %></td>
-        <td><%= appointment_patient.area %></td>
-        <td><%= appointment_patient.app_date %></td>
-        <td><%= appointment_patient.observation %></td>
-        <td><%= appointment_patient.status %></td>
-        <td><%= appointment_patient.id_patient %></td>
-        <td><%= appointment_patient.id_diagnoses %></td>
+        <td><%= secretary.id_appointment %></td>
+        <td><%= secretary.area %></td>
+        <td><%= secretary.app_date %></td>
+        <td><%= secretary.observation %></td>
+        <td><%= secretary.status %></td>
+        <td><%= secretary.id_patient %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,10 +37,7 @@
 
 <br>
 
-<form action = "/appointment_patients/index2" >
-  <br>
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>" >
-  <br>
+<form action = "/secretaries/index2" >
   Please enter initial date. (yyyy-mm-dd)
   <br>
   <input type="text" name="initial_date">
@@ -57,10 +51,7 @@
 
 <br>
 
-<form action = "/appointment_patients/index3" >
-  <br>
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
-  <br>
+<form action = "/secretaries/index3" >
   Please enter status of appointment to filter
   <br>
   <select name="status">
@@ -75,10 +66,7 @@
 
 <br>
 
-<form action = "/appointment_patients/index4">
-  <br>
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
-  <br>
+<form action = "/secretaries/index4">
   Please enter area of appointment to filter
   <br>
   <input type="text" name="area">
@@ -88,11 +76,8 @@
 
 <br>
 
-<form action = "/appointment_patients/delete_app" >
-  <br>
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
-  <br>
-  Please enter appointment to cancel
+<form action = "/secretaries/delete_app" >
+  Please enter appointment to CANCEL
   <br>
   <input type="text" name="app_id">
   <br>  
@@ -101,21 +86,15 @@
 
 <br>
 
-<form action = "/appointment_patients/show" >
-  <br>
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
-  <br>
-  Show information of the appointment id:
+<form action = "/secretaries/assign_app" >
+  Please enter appointment to ASSIGN
   <br>
   <input type="text" name="app_id">
   <br>  
-  <input type="submit" value="Show"/>
+  <input type="submit" value="Assign"/>
 </form>
 
-<%= link_to 'New Appointment Patient', 
-  :controller => 'appointment_patients',
-  :action => 'new',
-  :id => @id_patient_actual %>
+<br>
 
-  <strong><h3><%= link_to "Close", logins_path %> </h3></strong>
-
+<%= link_to 'New appointment', new_appointment_path %>
+<%= link_to 'Close', logins_path %>
