@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :birth_date %>
-    <%= form.date_select :birth_date %>
+    <%= form.date_select :birth_date, start_year: 1900, end_year: 2018 %>
   </div>
 
   <div class="field">
@@ -44,6 +44,16 @@
   <div class="field">
     <%= form.label :telephone %>
     <%= form.text_field :telephone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
   </div>
 
   <div class="actions">

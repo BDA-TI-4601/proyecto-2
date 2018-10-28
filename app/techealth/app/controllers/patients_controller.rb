@@ -1,4 +1,7 @@
 class PatientsController < ApplicationController
+
+  require 'digest'
+
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
 
   # GET /patients
@@ -24,15 +27,47 @@ class PatientsController < ApplicationController
   # POST /patients
   # POST /patients.json
   def create
-    @patient = Patient.new(patient_params)
+    p_id = params[:patient][:id_patient].to_i
+    p_name = params[:patient][:name]
+    p_year = params[:patient]["birth_date(1i)"].to_i
+    p_month = params[:patient]["birth_date(2i)"].to_i
+    p_day = params[:patient]["birth_date(3i)"].to_i
+    p_blood = params[:patient][:blood]
+    p_nationality = params[:patient][:nationality]
+    p_residence = params[:patient][:residence]
+    p_telephone = params[:patient][:telephone].split(',')
+    p_username = params[:patient][:username]
+    p_password = params[:patient][:password]
+    #enc_password = Digest::SHA256.digest p_password
 
-    respond_to do |format|
-      if @patient.save
-        format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
-        format.json { render :show, status: :created, location: @patient }
+    user_exist = User.where(username: p_username).exists?
+    @new_patient = 0
+    @new_user = 0
+    if user_exist
+      redirect_to logins_path, notice: "Username not available!" and return
+    else
+      @new_patient = Patient.new(
+        id_patient: p_id,
+        name: p_name,
+        birth_date: Date.new(p_year, p_month, p_day),
+        blood: p_blood,
+        nationality: p_nationality,
+        residence: p_residence,
+        telephone: p_telephone
+      )
+      @new_user = User.new(
+        id_user: p_id,
+        username: p_username,
+        password: p_password
+      )
+      if @new_patient.save
+        if @new_user.save
+          redirect_to logins_path, notice: "New user created!" and return
+        else
+          redirect_to logins_path, notice: "Error creating new user!" and return
+        end
       else
-        format.html { render :new }
-        format.json { render json: @patient.errors, status: :unprocessable_entity }
+        redirect_to logins_path, notice: "Error creating new user!" and return
       end
     end
   end
@@ -65,10 +100,5 @@ class PatientsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_patient
       @patient = Patient.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def patient_params
-      params.require(:patient).permit(:id_patient, :name, :birth_date, :blood, :nationality, :residence, :telephone)
     end
 end

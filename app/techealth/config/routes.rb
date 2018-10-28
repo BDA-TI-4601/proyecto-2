@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  root "logins#index"
+
+  resources :logins
   resources :diagnoses
   resources :appointments
   resources :treatments
