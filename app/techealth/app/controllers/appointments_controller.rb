@@ -10,6 +10,17 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1
   # GET /appointments/1.json
   def show
+    list = @appointment.id_diagnoses
+    temp_treats = []
+    @diagnoses = []
+    list.each do |i|
+      @diagnoses += [Diagnose.find_by(id_diagnose: i)]
+      temp_treats += Diagnose.find_by(id_diagnose: i).id_treatments
+    end
+    @treatments = []
+    temp_treats.each do |j|
+      @treatments += [Treatment.find_by(id_treatment: j)]
+    end
   end
 
   # GET /appointments/new

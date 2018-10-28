@@ -23,7 +23,15 @@
 
   <div class="field">
     <%= form.label :type %>
-    <%= form.text_field :type %>
+    <select name="status">
+      <option value="Medicamento" selected="selected">Medicamento</option>
+      <option value="Cirugia">Cirugia</option>
+      <option value="Curacion">Curacion</option>
+      <option value="Sutura">Sutura</option>
+      <option value="Radiografia">Radiografia</option>
+      <option value="Ultrasonido">Ultrasonido</option>
+      <option value="Otros">Otros</option>
+    </select>
   </div>
 
   <div class="field">

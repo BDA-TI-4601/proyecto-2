@@ -2,6 +2,13 @@
 
 <h1>Appointment Patients</h1>
 
+<form action = "/appointment_patients/index2" >
+  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
+  <input type="hidden" name="initial_date" value="1900-1-1">
+  <input type="hidden" name="final_date" value="2100-1-1">
+  <input type="submit" value="Show all"/>
+</form>
+
 <table>
   <thead>
     <tr>
@@ -81,13 +88,6 @@
 </form>
 
 <br>
-
-<form action = "/appointment_patients/index2" >
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
-  <input type="hidden" name="initial_date" value="1900-1-1">
-  <input type="hidden" name="final_date" value="2100-1-1">
-  <input type="submit" value="Show all"/>
-</form>
 
 <form action = "/appointment_patients/delete_app" >
   <br>
