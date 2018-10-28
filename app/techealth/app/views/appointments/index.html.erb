@@ -5,12 +5,12 @@
 <table>
   <thead>
     <tr>
+      <th>Id appointment</th>
       <th>Area</th>
-      <th>App date</th>
-      <th>Observation</th>
-      <th>Id app</th>
+      <th>Observations</th>
       <th>Status</th>
-      <th>Id patient</th>
+      <th>App date</th>
+      <th>Id diagnoses</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,12 +18,12 @@
   <tbody>
     <% @appointments.each do |appointment| %>
       <tr>
+        <td><%= appointment.id_appointment %></td>
         <td><%= appointment.area %></td>
-        <td><%= appointment.app_date %></td>
-        <td><%= appointment.observation %></td>
-        <td><%= appointment.id_app %></td>
+        <td><%= appointment.observations %></td>
         <td><%= appointment.status %></td>
-        <td><%= appointment.id_patient %></td>
+        <td><%= appointment.app_date %></td>
+        <td><%= appointment.id_diagnoses %></td>
         <td><%= link_to 'Show', appointment %></td>
         <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
         <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  symptoms: MyString
   id_diagnose: 1
+  name: MyString
+  symptoms: 
   level: MyString
   observations: MyString
-  id_patient: 1
+  id_treatments: 
 
 two:
-  name: MyString
-  symptoms: MyString
   id_diagnose: 1
+  name: MyString
+  symptoms: 
   level: MyString
   observations: MyString
-  id_patient: 1
+  id_treatments: 

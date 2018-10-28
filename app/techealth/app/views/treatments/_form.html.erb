@@ -17,6 +17,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :id_treatment %>
+    <%= form.number_field :id_treatment %>
+  </div>
+
+  <div class="field">
     <%= form.label :type %>
     <%= form.text_field :type %>
   </div>
@@ -32,13 +37,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :id_patient %>
-    <%= form.number_field :id_patient %>
-  </div>
-
-  <div class="field">
-    <%= form.label :secundary_effects %>
-    <%= form.text_field :secundary_effects %>
+    <%= form.label :secondary_effects %>
+    <%= form.text_field :secondary_effects %>
   </div>
 
   <div class="field">

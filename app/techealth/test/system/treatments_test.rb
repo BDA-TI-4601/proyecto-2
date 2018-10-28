@@ -16,9 +16,9 @@ class TreatmentsTest < ApplicationSystemTestCase
 
     fill_in "Days", with: @treatment.days
     fill_in "Dosis", with: @treatment.dosis
-    fill_in "Id Patient", with: @treatment.id_patient
+    fill_in "Id Treatment", with: @treatment.id_treatment
     fill_in "Name", with: @treatment.name
-    fill_in "Secundary Effects", with: @treatment.secundary_effects
+    fill_in "Secondary Effects", with: @treatment.secondary_effects
     fill_in "Total", with: @treatment.total
     fill_in "Type", with: @treatment.type
     click_on "Create Treatment"
@@ -33,9 +33,9 @@ class TreatmentsTest < ApplicationSystemTestCase
 
     fill_in "Days", with: @treatment.days
     fill_in "Dosis", with: @treatment.dosis
-    fill_in "Id Patient", with: @treatment.id_patient
+    fill_in "Id Treatment", with: @treatment.id_treatment
     fill_in "Name", with: @treatment.name
-    fill_in "Secundary Effects", with: @treatment.secundary_effects
+    fill_in "Secondary Effects", with: @treatment.secondary_effects
     fill_in "Total", with: @treatment.total
     fill_in "Type", with: @treatment.type
     click_on "Update Treatment"

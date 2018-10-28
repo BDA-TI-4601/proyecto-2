@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :id_diagnose %>
+    <%= form.number_field :id_diagnose %>
+  </div>
+
+  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
@@ -19,11 +24,6 @@
   <div class="field">
     <%= form.label :symptoms %>
     <%= form.text_field :symptoms %>
-  </div>
-
-  <div class="field">
-    <%= form.label :id_diagnose %>
-    <%= form.number_field :id_diagnose %>
   </div>
 
   <div class="field">
@@ -37,8 +37,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :id_patient %>
-    <%= form.number_field :id_patient %>
+    <%= form.label :id_treatments %>
+    <%= form.text_field :id_treatments %>
   </div>
 
   <div class="actions">

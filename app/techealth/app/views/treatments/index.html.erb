@@ -6,11 +6,11 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Id treatment</th>
       <th>Type</th>
       <th>Dosis</th>
       <th>Total</th>
-      <th>Id patient</th>
-      <th>Secundary effects</th>
+      <th>Secondary effects</th>
       <th>Days</th>
       <th colspan="3"></th>
     </tr>
@@ -20,11 +20,11 @@
     <% @treatments.each do |treatment| %>
       <tr>
         <td><%= treatment.name %></td>
+        <td><%= treatment.id_treatment %></td>
         <td><%= treatment.type %></td>
         <td><%= treatment.dosis %></td>
         <td><%= treatment.total %></td>
-        <td><%= treatment.id_patient %></td>
-        <td><%= treatment.secundary_effects %></td>
+        <td><%= treatment.secondary_effects %></td>
         <td><%= treatment.days %></td>
         <td><%= link_to 'Show', treatment %></td>
         <td><%= link_to 'Edit', edit_treatment_path(treatment) %></td>

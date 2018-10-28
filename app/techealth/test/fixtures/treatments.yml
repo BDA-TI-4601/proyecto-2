@@ -2,18 +2,18 @@
 
 one:
   name: MyString
+  id_treatment: 1
   type: 
   dosis: MyString
   total: 1
-  id_patient: 1
-  secundary_effects: MyString
+  secondary_effects: MyString
   days: 1
 
 two:
   name: MyString
+  id_treatment: 1
   type: 
   dosis: MyString
   total: 1
-  id_patient: 1
-  secundary_effects: MyString
+  secondary_effects: MyString
   days: 1

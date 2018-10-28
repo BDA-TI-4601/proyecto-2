@@ -17,7 +17,7 @@ class DiagnosesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create diagnosis" do
     assert_difference('Diagnose.count') do
-      post diagnoses_url, params: { diagnosis: { id_diagnose: @diagnosis.id_diagnose, id_patient: @diagnosis.id_patient, level: @diagnosis.level, name: @diagnosis.name, observations: @diagnosis.observations, symptoms: @diagnosis.symptoms } }
+      post diagnoses_url, params: { diagnosis: { id_diagnose: @diagnosis.id_diagnose, id_treatments: @diagnosis.id_treatments, level: @diagnosis.level, name: @diagnosis.name, observations: @diagnosis.observations, symptoms: @diagnosis.symptoms } }
     end
 
     assert_redirected_to diagnosis_url(Diagnose.last)
@@ -34,7 +34,7 @@ class DiagnosesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update diagnosis" do
-    patch diagnosis_url(@diagnosis), params: { diagnosis: { id_diagnose: @diagnosis.id_diagnose, id_patient: @diagnosis.id_patient, level: @diagnosis.level, name: @diagnosis.name, observations: @diagnosis.observations, symptoms: @diagnosis.symptoms } }
+    patch diagnosis_url(@diagnosis), params: { diagnosis: { id_diagnose: @diagnosis.id_diagnose, id_treatments: @diagnosis.id_treatments, level: @diagnosis.level, name: @diagnosis.name, observations: @diagnosis.observations, symptoms: @diagnosis.symptoms } }
     assert_redirected_to diagnosis_url(@diagnosis)
   end
 

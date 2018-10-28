@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Id diagnose:</strong>
+  <%= @diagnosis.id_diagnose %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @diagnosis.name %>
 </p>
@@ -8,11 +13,6 @@
 <p>
   <strong>Symptoms:</strong>
   <%= @diagnosis.symptoms %>
-</p>
-
-<p>
-  <strong>Id diagnose:</strong>
-  <%= @diagnosis.id_diagnose %>
 </p>
 
 <p>
@@ -26,8 +26,8 @@
 </p>
 
 <p>
-  <strong>Id patient:</strong>
-  <%= @diagnosis.id_patient %>
+  <strong>Id treatments:</strong>
+  <%= @diagnosis.id_treatments %>
 </p>
 
 <%= link_to 'Edit', edit_diagnosis_path(@diagnosis) %> |

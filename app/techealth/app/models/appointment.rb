@@ -1,9 +1,9 @@
 class Appointment
   include Mongoid::Document
+  auto_increment :id_appointment
   field :area, type: String
-  field :app_date, type: Date
-  field :observation, type: String
-  autoincremental :id_app
+  field :observations, type: String
   field :status, type: String
-  field :id_patient, type: Integer
+  field :app_date, type: Time
+  field :id_diagnoses, type: Array
 end

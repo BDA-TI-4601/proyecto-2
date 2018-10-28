@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id_appointment: 1
   area: MyString
-  app_date: 2018-10-27
-  observation: MyString
-  id_app: 1
+  observations: MyString
   status: MyString
-  id_patient: 1
+  app_date: 2018-10-27 22:34:40
+  id_diagnoses: 
 
 two:
+  id_appointment: 1
   area: MyString
-  app_date: 2018-10-27
-  observation: MyString
-  id_app: 1
+  observations: MyString
   status: MyString
-  id_patient: 1
+  app_date: 2018-10-27 22:34:40
+  id_diagnoses: 

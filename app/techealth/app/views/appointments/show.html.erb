@@ -1,23 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Id appointment:</strong>
+  <%= @appointment.id_appointment %>
+</p>
+
+<p>
   <strong>Area:</strong>
   <%= @appointment.area %>
 </p>
 
 <p>
-  <strong>App date:</strong>
-  <%= @appointment.app_date %>
-</p>
-
-<p>
-  <strong>Observation:</strong>
-  <%= @appointment.observation %>
-</p>
-
-<p>
-  <strong>Id app:</strong>
-  <%= @appointment.id_app %>
+  <strong>Observations:</strong>
+  <%= @appointment.observations %>
 </p>
 
 <p>
@@ -26,8 +21,13 @@
 </p>
 
 <p>
-  <strong>Id patient:</strong>
-  <%= @appointment.id_patient %>
+  <strong>App date:</strong>
+  <%= @appointment.app_date %>
+</p>
+
+<p>
+  <strong>Id diagnoses:</strong>
+  <%= @appointment.id_diagnoses %>
 </p>
 
 <%= link_to 'Edit', edit_appointment_path(@appointment) %> |

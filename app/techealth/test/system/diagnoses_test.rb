@@ -15,7 +15,7 @@ class DiagnosesTest < ApplicationSystemTestCase
     click_on "New Diagnose"
 
     fill_in "Id Diagnose", with: @diagnosis.id_diagnose
-    fill_in "Id Patient", with: @diagnosis.id_patient
+    fill_in "Id Treatments", with: @diagnosis.id_treatments
     fill_in "Level", with: @diagnosis.level
     fill_in "Name", with: @diagnosis.name
     fill_in "Observations", with: @diagnosis.observations
@@ -31,7 +31,7 @@ class DiagnosesTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Id Diagnose", with: @diagnosis.id_diagnose
-    fill_in "Id Patient", with: @diagnosis.id_patient
+    fill_in "Id Treatments", with: @diagnosis.id_treatments
     fill_in "Level", with: @diagnosis.level
     fill_in "Name", with: @diagnosis.name
     fill_in "Observations", with: @diagnosis.observations

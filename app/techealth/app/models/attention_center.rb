@@ -1,6 +1,6 @@
 class AttentionCenter
   include Mongoid::Document
-  auto_incremental :code
+  auto_increment :code
   field :name, type: String
   field :place, type: String
   field :capacity, type: Integer
