@@ -127,6 +127,86 @@ db.Treatment.remove(
 	{"id": }
 )
 
+// Cantidad de tratamientos de un tipo
+db.Treatment.count( { "type": } )
+
+// Monto promedio por tipo de tratamiento
+db.Treatment.aggregate([
+	{
+		$group: 
+			{_id:"$type", 
+			montoPromedio : {$avg : "$total"}
+			}
+	}
+])
+
+// Cantidad de citas por paciente
+db.Appointment.aggregate([
+	{
+		$match:
+		{"id_patient": }
+	},
+	{
+		$group:
+		{_id:"$id_patient",
+		cantidadCitas:{$sum:1}}
+	}
+])
+
+// Cantidad de citas por rango de fechas
+db.Appointment.aggregate([
+	{
+		$match:
+		{"app_date": 
+			{
+        		$gte: ISODate("2011-04-29T00:00:00.000Z"),
+        		$lt: ISODate("2011-06-01T00:00:00.000Z")
+    		}
+		}
+	{
+		$group:
+		{_id:"$id_patient",
+		cantidadCitas:{$sum:1}}
+	}
+])
+
+// Cantidad de citas por especialidad
+db.Appointment.aggregate([
+	{
+		$match:
+		{"area": }
+	{
+		$group:
+		{_id:"$id_patient",
+		cantidadCitas:{$sum:1}}
+	}
+])
+
+// Cantidad de citas por estado
+db.Appointment.aggregate([
+	{
+		$match:
+		{"status": }
+	{
+		$group:
+		{_id:"$id_patient",
+		cantidadCitas:{$sum:1}}
+	}
+])
+
+// Tres pacientes con más citas registradas
+db.Treatment.aggregate([
+	{
+		$group:
+		{_id:"$id_patient",
+		cantidadCitas:{$sum:1}}
+	},
+	{$limit:3}
+])
+
+
+
+
 
 
 
