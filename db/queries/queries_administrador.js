@@ -204,6 +204,15 @@ db.Treatment.aggregate([
 	{$limit:3}
 ])
 
+// Enfermedades más diagnosticadas
+db.Diagnose.aggregate([
+	{
+		$group:
+		{_id:"$name",
+		cantidadDeVeces:{$sum:1}}
+	},
+	{$limit:10}
+])
 
 
 
