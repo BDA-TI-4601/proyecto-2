@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :administrators
   get 'appointment_patients/index2'
   get 'appointment_patients/index3'
   get 'appointment_patients/index4'

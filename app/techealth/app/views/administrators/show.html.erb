@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Treatment:</strong>
+  <%= @administrator.treatment %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @administrator.amount %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @administrator.price %>
+</p>
+
+<%= link_to 'Edit', edit_administrator_path(@administrator) %> |
+<%= link_to 'Back', administrators_path %>
