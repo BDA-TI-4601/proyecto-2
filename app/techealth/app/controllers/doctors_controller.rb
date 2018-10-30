@@ -46,6 +46,25 @@ class DoctorsController < ApplicationController
   # GET /doctors/1
   # GET /doctors/1.json
   def show
+    p_id = params[:app_id]
+    @appointment = Appointment.find_by(id_appointment: p_id)
+    @id_patient_actual = @appointment.id_patient
+    list = @appointment.id_diagnoses
+    temp_treats = []
+    @diagnoses = []
+    if list.nil?
+      @diagnoses = []
+      @treatments = []
+    else
+      list.each do |i|
+        @diagnoses += [Diagnose.find_by(id_diagnose: i)]
+        temp_treats += Diagnose.find_by(id_diagnose: i).id_treatments
+      end
+      @treatments = []
+      temp_treats.each do |j|
+        @treatments += [Treatment.find_by(id_treatment: j)]
+      end
+    end
   end
 
   # GET /doctors/new
