@@ -9,7 +9,6 @@ class AppointmentPatientsController < ApplicationController
     puts "DATA: #{@id_patient_actual}"
     @appointment_patients = Appointment.where(id_patient: @id_patient_actual)
     @actual_user = Patient.find_by(id_patient: @id_patient_actual)
-    @status
     #render 'index'
   end
 
@@ -27,7 +26,7 @@ class AppointmentPatientsController < ApplicationController
       'id_patient' => @id_patient_actual
     }
     @appointment_patients = Appointment.where(query)
-    @status = 'OK'
+    flash[:notice] = "OK"
     render 'index'
   end
   helper_method :index2
@@ -37,7 +36,7 @@ class AppointmentPatientsController < ApplicationController
     @p_status = params[:status]
     @appointment_patients = Appointment.where(status: @p_status)
     @actual_user = Patient.find_by(id_patient: @id_patient_actual)
-    @status = 'OK'
+    flash[:notice] = "OK"
     render 'index'
   end
   helper_method :index3
@@ -47,20 +46,33 @@ class AppointmentPatientsController < ApplicationController
     @p_area = params[:area]
     @appointment_patients = Appointment.where(area: @p_area)
     @actual_user = Patient.find_by(id_patient: @id_patient_actual)
-    @status = 'OK'
+    flash[:notice] = "OK"
     render 'index'
   end
   helper_method :index4
 
   def delete_app
     @p_app_id = params[:app_id]
+    @id_patient_actual = params[:id]
+    @actual_user = Patient.find_by(id_patient: @id_patient_actual)
     if (@p_app_id == "")
+      flash[:notice] = "empty field"
     else
-      Appointment.where(id_appointment: @p_app_id).update(status: 'Cancelada por paciente')
+      if (Appointment.where(
+        id_appointment: @p_app_id, 
+        id_patient: @id_patient_actual
+      ).exists?) 
+        Appointment.where(
+          id_appointment: @p_app_id, 
+          id_patient: @id_patient_actual
+        ).update(status: 'Cancelada por paciente')
+        flash[:notice] = "appointment cancelled"
+      else
+        flash[:notice] = "error: check appointment id"
+      end
     end
     @appointment_patients = Appointment.all
-    @status = 'OK'
-    render 'index'
+    redirect_to controller: 'appointment_patients', id: @id_patient_actual and return
   end
   helper_method :delete_app
 
@@ -75,7 +87,7 @@ class AppointmentPatientsController < ApplicationController
     @treatments = []
     if @appointment.nil?
       @actual_user = Patient.find_by(id_patient: @id_patient_actual)
-      @status = "Appointment doesn't exist"
+      flash[:notice] = "appointment doesn't exist"
       redirect_to controller: 'appointment_patients', id: @id_patient_actual and return
     else
       list = @appointment.id_diagnoses
@@ -97,7 +109,6 @@ class AppointmentPatientsController < ApplicationController
         end
       end
     end
-    @status = 'OK'
   end
 
   # GET /appointment_patients/new
@@ -143,8 +154,10 @@ class AppointmentPatientsController < ApplicationController
     )
     
     if @appointment.save
+      flash[:notice] = "OK"
       redirect_to controller: 'appointment_patients', id: p_id_patient and return
     else
+      flash[:notice] = "FAIL"
       redirect_to controller: 'appointment_patients', id: p_id_patient and return
     end
   end
