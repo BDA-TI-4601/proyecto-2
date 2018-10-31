@@ -2,7 +2,11 @@
 
 <h1>Administrators</h1>
 
-<table>
+
+<form action = "/administrators/index2" >
+  <input type="submit" value="Show"/>
+
+  <table>
   <thead>
     <tr>
       <th>Treatment Type</th>
@@ -22,6 +26,8 @@
     <% end %>
   </tbody>
 </table>
+
+</form>
 
 <br>
 
@@ -92,7 +98,7 @@
 <br>
 
 
-<form action = "/appointment_patients/index2" >
+<form action = "/administrators/index2" >
   <br>
   <input type="hidden" name="id" value="<%= @id_patient_actual %>" >
   <br>

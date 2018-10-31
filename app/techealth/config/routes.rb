@@ -1,21 +1,27 @@
 Rails.application.routes.draw do
   
-  resources :administrators
   get 'appointment_patients/index2'
   get 'appointment_patients/index3'
   get 'appointment_patients/index4'
   get 'doctors/index2'
   get 'doctors/index3'
   get 'doctors/index4'
+  get 'doctors/index5'
+  get 'doctors/index6'
   get 'secretaries/index2'
   get 'secretaries/index3'
   get 'secretaries/index4'
+  get 'secretaries/index5'
   get 'secretaries/delete_app'
   get 'secretaries/assign_app'
   get '/secretaries/by_patient'
+  get '/administrators/index2'
+  get '/administrators/index3'
+  get '/administrators/index4'
 
   root "logins#index"
 
+  resources :administrators
   resources :doctors
   resources :secretaries
   resources :appointment_patients

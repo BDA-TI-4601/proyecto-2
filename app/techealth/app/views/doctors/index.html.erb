@@ -31,6 +31,48 @@
 
 <br>
 
+<table>
+  <thead>
+    <tr>
+      <th>Id Patient</th>
+      <th>Name</th>
+      <th>Birth date</th>
+      <th>Blood</th>
+      <th>Nationality</th>
+      <th>Residence</th>
+      <th>Telephone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patients.each do |pat| %>
+      <tr>
+        <td><%= pat.id_patient %></td>
+        <td><%= pat.name %></td>
+        <td><%= pat.birth_date %></td>
+        <td><%= pat.blood %></td>
+        <td><%= pat.nationality %></td>
+        <td><%= pat.residence %></td>
+        <td><%= pat.telephone %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<form action = "/doctors/index5" >  
+  <br>
+  Show information of the patient:
+  <br>
+  <input type="text" name="patient_id">
+  <br>  
+  <input type="submit" value="Show"/>
+</form>
+
+
+<br>
 
 <form action = "/doctors" method="index2"> 
   <br>
@@ -82,6 +124,17 @@
       <option value="Ortopedia">Ortopedia</option>
     </select>  
   <input type="submit" value="Filter by area"/>
+</form>
+
+<br>
+
+<form action = "/doctors/index6" >  
+  <br>
+  Show patients appointments:
+  <br>
+  <input type="text" name="patient_name">
+  <br>  
+  <input type="submit" value="Show"/>
 </form>
 
 <br>

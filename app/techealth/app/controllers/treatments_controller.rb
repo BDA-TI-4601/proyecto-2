@@ -24,7 +24,25 @@ class TreatmentsController < ApplicationController
   # POST /treatments
   # POST /treatments.json
   def create
-    @treatment = Treatment.new(treatment_params)
+    p_id_treatment = params[:treatment][:id_treatment].to_i
+    p_name = params[:treatment][:name]
+    p_type = params[:type]
+    p_dosis = params[:treatment][:dosis]
+    p_total = params[:treatment][:total].to_i
+    p_secondary_effects = params[:treatment][:secondary_effects]
+    p_days = params[:treatment][:days].to_i
+
+    # verificar
+    
+    @treatment = Treatment.new(
+               id_treatment: p_id_treatment,
+               name: p_name,
+               type: p_type,
+               dosis: p_dosis,
+               total: p_total,
+               secondary_effects: p_secondary_effects,
+               days: p_days     
+    )
 
     respond_to do |format|
       if @treatment.save

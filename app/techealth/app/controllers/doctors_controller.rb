@@ -5,6 +5,7 @@ class DoctorsController < ApplicationController
   # GET /doctors.json
   def index
     @doctors = Appointment.all
+    @patients = []
   end
 
   def index2
@@ -21,6 +22,7 @@ class DoctorsController < ApplicationController
       }
     }
     @doctors = Appointment.where(query)
+    @patients = []
     end
 
     render 'index'
@@ -31,6 +33,7 @@ class DoctorsController < ApplicationController
     @id_patient_actual = params[:id]
     @p_status = params[:status]
     @doctors = Appointment.where(status: @p_status)
+    @patients = []
     render 'index'
   end 
   helper_method :index3
@@ -39,9 +42,32 @@ class DoctorsController < ApplicationController
     @id_patient_actual = params[:id]
     @p_area = params[:area]
     @doctors = Appointment.where(area: @p_area)
+    @patients = []
     render 'index'
   end
   helper_method :index4
+
+  def index5
+    p_id_patient = params[:patient_id]
+    @patients = Patient.where(id_patient: p_id_patient)
+    @doctors = Appointment.all
+    render 'index'
+  end
+  helper_method :index5
+
+  def index6
+    p_patient_name = params[:patient_name]
+    p_exist = Patient.where(name: p_patient_name).exists?
+    if p_exist
+      @patients = Patient.where(name: p_patient_name)    
+      @doctors = Appointment.where(id_patient: @patients[0].id_patient)
+    else
+      @doctors = Appointment.all
+      @patients = []
+    end
+    render 'index'
+  end
+  helper_method :index6
 
   # GET /doctors/1
   # GET /doctors/1.json
@@ -124,6 +150,6 @@ class DoctorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doctor_params
-      params.require(:doctor).permit(:id_appointment, :area, :app_date, :observation, :status, :id_patient_integer, :id_diagnoses)
+      params.require(:doctor).permit(:id_appointment, :area, :app_date, :observation, :status, :id_patient, :id_diagnoses)
     end
 end
