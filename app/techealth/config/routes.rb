@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'doctors/index2'
   get 'doctors/index3'
   get 'doctors/index4'
+  get 'doctors/showall'
   get 'secretaries/index2'
   get 'secretaries/index3'
   get 'secretaries/index4'

@@ -113,7 +113,7 @@ class AppointmentPatientsController < ApplicationController
 
   # GET /appointment_patients/new
   def new
-    @id_patient_actual = params[:id]
+    @id_patient_actual = params[:id_patient_actual]
     @appointment_patient = AppointmentPatient.new
     @appointment_patient.id_patient = @id_patient_actual
   end

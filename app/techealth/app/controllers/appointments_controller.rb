@@ -20,6 +20,9 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
+    if (@appointment.status != "Asignada")
+      redirect_to controller: 'appointments' and return
+    end
   end
 
   # POST /appointments
@@ -65,13 +68,21 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
+    p_id_diagnoses = params[:appointment][:id_diagnoses].split(',')
+    p_id_diagnoses.each do |diag|
+      actual_check = Diagnose.where(id_diagnose: diag).exists?
+      if !actual_check
+        flash[:notice] = "Diagnose id " + diag + " doesn't exist!"
+        redirect_to controller: 'appointments' and return
+      end
+    end
     respond_to do |format|
-      if @appointment.update(appointment_params)
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @appointment }
+      if @appointment.update(id_diagnoses: p_id_diagnoses)
+        flash[:notice] = "Diagnoses assigned"
+        redirect_to controller: 'appointments' and return
       else
-        format.html { render :edit }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+        flash[:notice] = "Error assigning diagnoses"
+        redirect_to controller: 'appointments' and return
       end
     end
   end

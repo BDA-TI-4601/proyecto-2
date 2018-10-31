@@ -42,7 +42,7 @@
 
   <div class="field">
     <%= form.label :id_patient %>
-    <%= form.number_field :id_patient, :readonly => true %>
+    <%= form.number_field :id_patient, :readonly => true, :value => @id_patient_actual %>
   </div>
 
   <div class="actions">

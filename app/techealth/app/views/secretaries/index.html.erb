@@ -69,8 +69,14 @@
 <form action = "/secretaries/index4">
   Please enter area of appointment to filter
   <br>
-  <input type="text" name="area">
-  <br>  
+  <select name="area">
+      <option value="Administrativa" selected="selected">Administrativa</option>
+      <option value="Emergencias">Emergencias</option>
+      <option value="Ginecologia">Ginecologia</option>
+      <option value="Oncologia">Oncologia</option>
+      <option value="Dermatologia">Dermatologia</option>
+      <option value="Ortopedia">Ortopedia</option>
+    </select>
   <input type="submit" value="Filter by area"/>
 </form>
 
@@ -97,11 +103,11 @@
 <br>
 
 <form action = "/secretaries/by_patient" >
-  Please enter the id patient to filter
+  Please enter the id patient:
   <br>
   <input type="text" name="id_patient">
   <br>  
-  <input type="submit" value="Assign"/>
+  <input type="submit" value="Filter by id patient"/>
 </form>
 
 <br>

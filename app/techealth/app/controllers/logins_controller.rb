@@ -17,6 +17,7 @@ class LoginsController < ApplicationController
     @actual_user = 0
     p_username = params[:login][:username]
     p_password = params[:login][:password]
+
     @user_exist = User.where(username: p_username).exists?
     if @user_exist
       @user_exist = User.find_by(username: p_username)
@@ -29,11 +30,14 @@ class LoginsController < ApplicationController
           @actual_user = Functionary.find_by(identification: @user_exist.id_user)
           type_functionary = @actual_user.type
           if (type_functionary == 'Secretario')
-            redirect_to secretaries_path, notice: "USER TYPE: Secretario" and return
+            name_func = "Secretary: " + @actual_user.name 
+            redirect_to secretaries_path, notice: name_func and return
           elsif (type_functionary == 'Doctor')
-            redirect_to doctors_path, notice: "USER TYPE: Doctor" and return
+            name_func = "Doctor: " + @actual_user.name
+            redirect_to doctors_path, notice: name_func, name: @actual_user.name and return
           elsif (type_functionary == 'Administrador')
-            redirect_to administrators_path, notice: "USER TYPE: Administrador" and return
+            name_func = "Administrator: " + @actual_user.name
+            redirect_to administrators_path, notice: name_func, name: @actual_user.name and return
           end
         end
       else

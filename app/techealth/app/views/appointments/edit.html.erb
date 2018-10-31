@@ -3,4 +3,9 @@
 <%= render 'form', appointment: @appointment %>
 
 <%= link_to 'Show', @appointment %> |
-<%= link_to 'Back', appointments_path id: @@id_actual_user %>
+<%= link_to 'Back', appointments_path,  id: @id_actual_user %>
+
+<br>
+<%= link_to 'Show diagnoses catalog', 
+  :controller => 'diagnoses',
+  :action => 'index' %>

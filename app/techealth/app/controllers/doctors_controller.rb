@@ -14,15 +14,15 @@ class DoctorsController < ApplicationController
       @doctors = []
     else
       query = {
-      'app_date' => 
-      {
-        '$gte' => Date.strptime(@p_initial_date, '%Y-%m-%d'),
-        '$lt' => Date.strptime(@p_final_date, '%Y-%m-%d')
+        'app_date' => 
+          {
+            '$gte' => Date.strptime(@p_initial_date, '%Y-%m-%d'),
+            '$lt' => Date.strptime(@p_final_date, '%Y-%m-%d')
+          }
       }
-    }
-    @doctors = Appointment.where(query)
+      @doctors = Appointment.where(query)
     end
-
+    flash[:notice] = "OK"
     render 'index'
   end
   helper_method :index2
@@ -74,6 +74,7 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/1/edit
   def edit
+    
   end
 
   # POST /doctors
@@ -115,6 +116,26 @@ class DoctorsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def showall
+    @p_initial_date = params[:initial_date]
+    @p_final_date = params[:final_date]
+    if (@p_initial_date == "" || @p_final_date == "")
+      @doctors = []
+    else
+      query = {
+        'app_date' => 
+        {
+          '$gte' => Date.strptime(@p_initial_date, '%Y-%m-%d'),
+          '$lt' => Date.strptime(@p_final_date, '%Y-%m-%d')
+        }
+      }
+      @doctors = Appointment.where(query)
+    end
+    flash[:notice] = "OK"
+    render 'index'
+  end
+  helper_method :showall
 
   private
     # Use callbacks to share common setup or constraints between actions.
