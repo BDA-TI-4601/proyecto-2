@@ -1,26 +1,33 @@
 class AppointmentPatientsController < ApplicationController
   before_action :set_appointment_patient, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery except: :show
 
   # GET /appointment_patients
   # GET /appointment_patients.json
   def index 
     @id_patient_actual = params[:id]
+    puts "DATA: #{@id_patient_actual}"
     @appointment_patients = Appointment.where(id_patient: @id_patient_actual)
-    render 'index'
+    @actual_user = Patient.find_by(id_patient: @id_patient_actual)
+    @status
+    #render 'index'
   end
 
   def index2
     @id_patient_actual = params[:id]
     @p_initial_date = params[:initial_date]
     @p_final_date = params[:final_date]
+    @actual_user = Patient.find_by(id_patient: @id_patient_actual)
     query = {
       'app_date' => 
       {
         '$gte' => Date.strptime(@p_initial_date, '%Y-%m-%d'),
         '$lt' => Date.strptime(@p_final_date, '%Y-%m-%d')
-      }
+      },
+      'id_patient' => @id_patient_actual
     }
     @appointment_patients = Appointment.where(query)
+    @status = 'OK'
     render 'index'
   end
   helper_method :index2
@@ -29,6 +36,8 @@ class AppointmentPatientsController < ApplicationController
     @id_patient_actual = params[:id]
     @p_status = params[:status]
     @appointment_patients = Appointment.where(status: @p_status)
+    @actual_user = Patient.find_by(id_patient: @id_patient_actual)
+    @status = 'OK'
     render 'index'
   end
   helper_method :index3
@@ -37,6 +46,8 @@ class AppointmentPatientsController < ApplicationController
     @id_patient_actual = params[:id]
     @p_area = params[:area]
     @appointment_patients = Appointment.where(area: @p_area)
+    @actual_user = Patient.find_by(id_patient: @id_patient_actual)
+    @status = 'OK'
     render 'index'
   end
   helper_method :index4
@@ -48,6 +59,7 @@ class AppointmentPatientsController < ApplicationController
       Appointment.where(id_appointment: @p_app_id).update(status: 'Cancelada por paciente')
     end
     @appointment_patients = Appointment.all
+    @status = 'OK'
     render 'index'
   end
   helper_method :delete_app
@@ -56,11 +68,18 @@ class AppointmentPatientsController < ApplicationController
   # GET /appointment_patients/1.json
   def show
     p_id = params[:app_id]
-    @appointment = Appointment.find_by(id_appointment: p_id)
-    @id_patient_actual = @appointment.id_patient
-    list = @appointment.id_diagnoses
+    @id_patient_actual = params[:id_patient_actual]
+    @appointment = Appointment.find_by(id_appointment: p_id, id_patient: @id_patient_actual)
     temp_treats = []
     @diagnoses = []
+    @treatments = []
+    if @appointment.nil?
+      @actual_user = Patient.find_by(id_patient: @id_patient_actual)
+      @status = "Appointment doesn't exist"
+      redirect_to controller: 'appointment_patients', id: @id_patient_actual and return
+    else
+      list = @appointment.id_diagnoses
+    end
     if list.nil?
       @diagnoses = []
       @treatments = []
@@ -69,11 +88,16 @@ class AppointmentPatientsController < ApplicationController
         @diagnoses += [Diagnose.find_by(id_diagnose: i)]
         temp_treats += Diagnose.find_by(id_diagnose: i).id_treatments
       end
-      @treatments = []
-      temp_treats.each do |j|
-        @treatments += [Treatment.find_by(id_treatment: j)]
+      if !temp_treats.nil?
+        temp_treats.each do |j|
+          algo = Treatment.find_by(id_treatment: j)
+          if !algo.nil? 
+            @treatments += [algo]
+          end
+        end
       end
     end
+    @status = 'OK'
   end
 
   # GET /appointment_patients/new

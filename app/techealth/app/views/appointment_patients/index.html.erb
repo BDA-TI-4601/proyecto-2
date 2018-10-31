@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Appointment Patients</h1>
+<h1>Patient</h1>
+Hi <%= @actual_user.name %>!
+<br>
+operation-status: <%= @status %>
 
+<br>
+<h1>Appointments</h1>
 <form action = "/appointment_patients/index2" >
   <input type="hidden" name="id" value="<%= @id_patient_actual %>">
   <input type="hidden" name="initial_date" value="1900-1-1">
@@ -109,7 +114,7 @@
 
 <form action = "/appointment_patients/show" >
   <br>
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
+  <input type="hidden" name="id_patient_actual" value="<%= @id_patient_actual %>">
   <br>
   Show information of the appointment id:
   <br>
@@ -121,7 +126,7 @@
 <%= link_to 'New Appointment Patient', 
   :controller => 'appointment_patients',
   :action => 'new',
-  :id => @id_patient_actual %>
+  :id_patient_actual => @id_patient_actual %>
 
   <strong><h3><%= link_to "Log Out", logins_path %> </h3></strong>
 
