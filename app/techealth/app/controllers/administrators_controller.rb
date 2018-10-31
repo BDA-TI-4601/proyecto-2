@@ -7,6 +7,21 @@ class AdministratorsController < ApplicationController
     @administrators = Administrator.all
   end
 
+  def index2
+    @administrators = []
+    tmp_treatments = Treatment.all   
+    @treatments = []
+    tmp_treatments.each do |treatment|
+      puts "Tratamientos: #{treatment}"   
+    end
+
+   # puts "Tratamientos: #{@tmp_treatments}"
+
+    render 'index'
+  end
+
+  helper_method :index2
+
   # GET /administrators/1
   # GET /administrators/1.json
   def show

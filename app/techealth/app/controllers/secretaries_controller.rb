@@ -48,6 +48,19 @@ class SecretariesController < ApplicationController
   end
   helper_method :index4
 
+  def index5
+    p_patient_name = params[:patient_name]
+    p_exist = Patient.where(name: p_patient_name).exists?
+    if p_exist
+      patients = Patient.where(name: p_patient_name)    
+      @secretaries = Appointment.where(id_patient: patients[0].id_patient)
+    else
+      @secretaries = Appointment.all
+    end
+    render 'index'
+  end
+  helper_method :index5
+
   def delete_app
     @p_app_id = params[:app_id]
     if (@p_app_id == "")

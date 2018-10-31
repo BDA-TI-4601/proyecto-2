@@ -5,6 +5,6 @@ class Doctor
   field :app_date, type: Time
   field :observation, type: String
   field :status, type: String
-  field :id_patient_integer, type: String
+  field :id_patient, type: Integer
   field :id_diagnoses, type: Array
 end
