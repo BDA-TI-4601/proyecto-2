@@ -34,7 +34,7 @@ class AppointmentPatientsController < ApplicationController
   def index3
     @id_patient_actual = params[:id]
     @p_status = params[:status]
-    @appointment_patients = Appointment.where(status: @p_status)
+    @appointment_patients = Appointment.where(status: @p_status, id_patient: @id_patient_actual)
     @actual_user = Patient.find_by(id_patient: @id_patient_actual)
     flash[:notice] = "OK"
     render 'index'
@@ -44,7 +44,7 @@ class AppointmentPatientsController < ApplicationController
   def index4
     @id_patient_actual = params[:id]
     @p_area = params[:area]
-    @appointment_patients = Appointment.where(area: @p_area)
+    @appointment_patients = Appointment.where(area: @p_area, id_patient: @id_patient_actual)
     @actual_user = Patient.find_by(id_patient: @id_patient_actual)
     flash[:notice] = "OK"
     render 'index'
