@@ -20,12 +20,11 @@ class DoctorsController < ApplicationController
             '$gte' => Date.strptime(@p_initial_date, '%Y-%m-%d'),
             '$lt' => Date.strptime(@p_final_date, '%Y-%m-%d')
           }
-      }
-    }
+        }
     @doctors = Appointment.where(query)
     @patients = []
     end
-    flash[:notice] = "OK"
+    flash[:notice] = "initial date: "+@p_initial_date + ", final date: "+@p_final_date
     render 'index'
   end
   helper_method :index2
@@ -74,6 +73,7 @@ class DoctorsController < ApplicationController
   # GET /doctors/1.json
   def show
     p_id = params[:app_id]
+    @patients = []
     @appointment = Appointment.find_by(id_appointment: p_id)
     @id_patient_actual = @appointment.id_patient
     list = @appointment.id_diagnoses
@@ -147,6 +147,7 @@ class DoctorsController < ApplicationController
   def showall
     @p_initial_date = params[:initial_date]
     @p_final_date = params[:final_date]
+    @patients = []
     if (@p_initial_date == "" || @p_final_date == "")
       @doctors = []
     else
