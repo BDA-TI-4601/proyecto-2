@@ -21,8 +21,15 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/edit
   def edit
     if (@appointment.status != "Asignada")
+      flash["notice"] = "error: editing not assigned appointment."
       redirect_to controller: 'appointments' and return
     end
+    list = @appointment.id_diagnoses
+    aux_list = []
+    list.each do |i|
+      aux_list += [i[:id]]
+    end
+    @appointment.id_diagnoses = aux_list
   end
 
   # POST /appointments
@@ -40,6 +47,11 @@ class AppointmentsController < ApplicationController
     p_id_diagnoses = params[:appointment][:id_diagnoses].split(',')
     p_status = params[:status]
     
+    aux_list = []
+    p_id_diagnoses.each do |i|
+      aux_list += [{"id" => i.to_i}]
+    end 
+
     @appointment = Appointment.new(
       id_appointment: p_id_appointment,
       area: p_area,
@@ -53,7 +65,7 @@ class AppointmentsController < ApplicationController
       observation: p_observation,
       status: p_status,
       id_patient: p_id_patient,
-      id_diagnoses: p_id_diagnoses
+      id_diagnoses: aux_list
     )
     
     if @appointment.save
@@ -68,16 +80,18 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-    p_id_diagnoses = params[:appointment][:id_diagnoses].split(',')
+    aux_list = []
+    p_id_diagnoses = params[:appointment][:id_diagnoses].split(' ')
     p_id_diagnoses.each do |diag|
       actual_check = Diagnose.where(id_diagnose: diag).exists?
       if !actual_check
         flash[:notice] = "Diagnose id " + diag + " doesn't exist!"
         redirect_to controller: 'appointments' and return
       end
+      aux_list += [{"id" => diag.to_i}]
     end
     respond_to do |format|
-      if @appointment.update(id_diagnoses: p_id_diagnoses)
+      if @appointment.update(id_diagnoses: aux_list)
         flash[:notice] = "Diagnoses assigned"
         redirect_to controller: 'appointments' and return
       else

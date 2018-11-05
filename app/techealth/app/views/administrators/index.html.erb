@@ -2,11 +2,11 @@
 
 <h1>Administrators</h1>
 
+<form action = "/administrators/refresh" >
+  <input type="submit" value="Refresh"/>
+</form>
 
-<form action = "/administrators/index2" >
-  <input type="submit" value="Show"/>
-
-  <table>
+<table>
   <thead>
     <tr>
       <th>Treatment Type</th>
@@ -17,17 +17,15 @@
   </thead>
 
   <tbody>
-    <% @administrators.each do |administrator| %>
+    <% @assigned_treatments.each do |assi_tre| %>
       <tr>
-        <td><%= administrator.treatment %></td>
-        <td><%= administrator.amount %></td>
-        <td><%= administrator.price %></td>
+        <td><%= assi_tre.type %></td>
+        <td><%= assi_tre.amount %></td>
+        <td><%= assi_tre.average %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-</form>
 
 <br>
 
@@ -41,11 +39,10 @@
   </thead>
 
   <tbody>
-    <% @administrators.each do |administrator| %>
+    <% @range_diagnoses.each do |r_d| %>
       <tr>
-        <td><%= administrator.treatment %></td>
-        <td><%= administrator.amount %></td>
-        <td><%= administrator.price %></td>
+        <td><%= r_d.patient %></td>
+        <td><%= r_d.amount %></td>
       </tr>
     <% end %>
   </tbody>
@@ -63,11 +60,10 @@
   </thead>
 
   <tbody>
-    <% @administrators.each do |administrator| %>
+    <% @disease_stadistics.each do |d_s| %>
       <tr>
-        <td><%= administrator.treatment %></td>
-        <td><%= administrator.amount %></td>
-        <td><%= administrator.price %></td>
+        <td><%= d_s.illness %></td>
+        <td><%= d_s.amount %></td>
       </tr>
     <% end %>
   </tbody>
@@ -85,11 +81,10 @@
   </thead>
 
   <tbody>
-    <% @administrators.each do |administrator| %>
+    <% @amount_apps.each do |a_a| %>
       <tr>
-        <td><%= administrator.treatment %></td>
-        <td><%= administrator.amount %></td>
-        <td><%= administrator.price %></td>
+        <td><%= a_a.patient %></td>
+        <td><%= a_a.amount %></td>
       </tr>
     <% end %>
   </tbody>
@@ -97,11 +92,7 @@
 
 <br>
 
-
-<form action = "/administrators/index2" >
-  <br>
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>" >
-  <br>
+<form action = "/administrators/range_date" >
   Please enter initial date. (yyyy-mm-dd)
   <br>
   <input type="text" name="initial_date">
@@ -115,11 +106,8 @@
 
 <br>
 
-<form action = "/appointment_patients/index3" >
-  <br>
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
-  <br>
-  Please enter status of appointment to filter
+<form action = "/administrators/status_filter" >
+  Please enter status of appointment to filter:
   <br>
   <select name="status">
       <option value="Registrada" selected="selected">Registrada</option>
@@ -133,11 +121,8 @@
 
 <br>
 
-<form action = "/appointment_patients/index4">
-  <br>
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
-  <br>
-  Please enter area of appointment to filter
+<form action = "/administrators/area_filter">
+  Please enter area of appointment to filter:
   <br>
   <select name="area">
       <option value="Administrativa" selected="selected">Administrativa</option>
@@ -152,13 +137,10 @@
 
 <br>
 
-<form action = "/appointment_patients/index4">
+<form action = "/administrators/patient_filter">
+  Please enter ID patient to filter:
   <br>
-  <input type="hidden" name="id" value="<%= @id_patient_actual %>">
-  <br>
-  Please enter ID patient to filter
-  <br>
-  <input type="text" name="id_patient">
+  <input type="text" name="patient">
   <br>  
   <input type="submit" value="Filter by ID Patient"/>
 </form>

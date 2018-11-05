@@ -70,15 +70,14 @@
 
 <br>
 
+Read patient information ->
 <form action = "/doctors/index5" >  
-  <br>
-  Show information of the patient:
+  Please enter the patient's id:
   <br>
   <input type="text" name="patient_id">
   <br>  
-  <input type="submit" value="Show"/>
+  <input type="submit" value="Read information"/>
 </form>
-
 
 <br>
 
@@ -97,10 +96,8 @@
 <br>
 
 <form action = "/doctors/index3" >
-  <br>
   <input type="hidden" name="id" value="<%= @id_patient_actual %>">
-  <br>
-  Please enter status of appointment to filter
+  Please enter the apointment's status to filter ->
   <br>
   <select name="status">
       <option value="Registrada" selected="selected">Registrada</option>
@@ -112,13 +109,10 @@
   <input type="submit" value="Filter by status"/>
 </form>
 
-<br>
-
 <form action = "/doctors/index4">
-  <br>
   <input type="hidden" name="id" value="<%= @id_patient_actual %>">
   <br>
-  Please enter area of appointment to filter
+  Please enter the appointment's area to filter ->
   <br>
   <select name="area">
       <option value="Administrativa" selected="selected">Administrativa</option>
@@ -133,20 +127,20 @@
 
 <br>
 
+Show patient's appointments ->
 <form action = "/doctors/index6" >  
-  <br>
-  Show patients appointments:
+  Please enter the patient's name:
   <br>
   <input type="text" name="patient_name">
   <br>  
-  <input type="submit" value="Show"/>
+  <input type="submit" value="Show appointments"/>
 </form>
 
 <br>
 
+Information about an appointment ->
 <form action = "/doctors/show" >
-  <br>
-  Show information of the appointment id:
+  Please enter the appointment's id:
   <br>
   <input type="text" name="app_id">
   <br>  

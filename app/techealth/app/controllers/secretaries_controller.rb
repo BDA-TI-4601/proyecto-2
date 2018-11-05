@@ -1,5 +1,5 @@
 class SecretariesController < ApplicationController
-  before_action :set_secretary, only: [:show, :edit, :update, :destroy]
+  before_action :set_secretary, only: [:edit, :update, :destroy]
 
   # GET /secretaries
   # GET /secretaries.json
@@ -96,6 +96,7 @@ class SecretariesController < ApplicationController
   # GET /secretaries/1
   # GET /secretaries/1.json
   def show
+    render 'show'
   end
 
   # GET /secretaries/new
@@ -105,6 +106,48 @@ class SecretariesController < ApplicationController
 
   # GET /secretaries/1/edit
   def edit
+  end
+
+  def create
+    p_area = params[:area]
+    p_year = params[:secretary]["app_date(1i)"].to_i
+    p_month = params[:secretary]["app_date(2i)"].to_i
+    p_day = params[:secretary]["app_date(3i)"].to_i
+    p_hour = params[:secretary]["app_date(4i)"].to_i
+    p_minute = params[:secretary]["app_date(5i)"].to_i
+    p_observation = params[:secretary][:observation]
+    p_id_patient = params[:secretary][:id_patient].to_i
+    p_status = "Registrada"
+
+    patient = Patient.find_by(id_patient: p_id_patient)
+    if( patient.nil? )
+      flash[:notice] = "error: Patient doesn't exist"
+      redirect_to controller: secretaries_path and return
+    end
+
+    @appointment = Appointment.new(
+      id_appointment: 0,
+      area: p_area,
+      app_date: Time.new(
+        p_year,
+        p_month,
+        p_day,
+        p_hour,
+        p_minute
+      ),
+      observation: p_observation,
+      status: p_status,
+      id_patient: p_id_patient,
+      id_diagnoses: []
+    )
+
+    if @appointment.save
+      flash[:notice] = "Appointment assigned to -> " + patient.name
+      redirect_to controller: secretaries_path, notice: @msg and return
+    else
+      flash[:notice] = "error: saving new appointment fails..."
+      redirect_to controller: secretaries_path and return
+    end
   end
 
   private

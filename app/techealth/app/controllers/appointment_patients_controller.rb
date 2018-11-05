@@ -6,7 +6,6 @@ class AppointmentPatientsController < ApplicationController
   # GET /appointment_patients.json
   def index 
     @id_patient_actual = params[:id]
-    puts "DATA: #{@id_patient_actual}"
     @appointment_patients = Appointment.where(id_patient: @id_patient_actual)
     @actual_user = Patient.find_by(id_patient: @id_patient_actual)
     #render 'index'
@@ -34,7 +33,10 @@ class AppointmentPatientsController < ApplicationController
   def index3
     @id_patient_actual = params[:id]
     @p_status = params[:status]
-    @appointment_patients = Appointment.where(status: @p_status)
+    @appointment_patients = Appointment.where(
+      status: @p_status, 
+      id_patient: @id_patient_actual
+    )
     @actual_user = Patient.find_by(id_patient: @id_patient_actual)
     flash[:notice] = "OK"
     render 'index'
@@ -44,7 +46,10 @@ class AppointmentPatientsController < ApplicationController
   def index4
     @id_patient_actual = params[:id]
     @p_area = params[:area]
-    @appointment_patients = Appointment.where(area: @p_area)
+    @appointment_patients = Appointment.where(
+      area: @p_area,
+      id_patient: @id_patient_actual
+    )
     @actual_user = Patient.find_by(id_patient: @id_patient_actual)
     flash[:notice] = "OK"
     render 'index'
@@ -79,7 +84,7 @@ class AppointmentPatientsController < ApplicationController
   # GET /appointment_patients/1
   # GET /appointment_patients/1.json
   def show
-    p_id = params[:app_id]
+    p_id = params[:app_id].to_i
     @id_patient_actual = params[:id_patient_actual]
     @appointment = Appointment.find_by(id_appointment: p_id, id_patient: @id_patient_actual)
     temp_treats = []
@@ -97,8 +102,11 @@ class AppointmentPatientsController < ApplicationController
       @treatments = []
     else
       list.each do |i|
-        @diagnoses += [Diagnose.find_by(id_diagnose: i)]
-        temp_treats += Diagnose.find_by(id_diagnose: i).id_treatments
+        app_actual = Diagnose.find_by(id_diagnose: i[:id])
+        if !app_actual.nil?
+          @diagnoses += [app_actual]
+          temp_treats += Diagnose.find_by(id_diagnose: i[:id]).id_treatments
+        end
       end
       if !temp_treats.nil?
         temp_treats.each do |j|

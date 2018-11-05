@@ -1,0 +1,17 @@
+
+
+db.appointments.aggregate(
+    [
+        {
+            $unwind: "$id_diagnoses"
+        },
+        {
+            $lookup: {
+                from: "diagnoses",
+                localField: "id_diagnoses.id",
+                foreignField: "id_diagnosis",
+                as: "asd"
+            }
+        }
+    ]
+)

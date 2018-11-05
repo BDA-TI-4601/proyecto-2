@@ -1,34 +1,32 @@
+<h1>New Appointment</h1>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Id appointment:</strong>
-  <%= @secretary.id_appointment %>
-</p>
+<form action = "/appointments/create" >
+  <br>
+  Patient's id:
+  <input type="text" name="id_patient">
+  <br>
+  <br>
+  Area:
+  <select name="area">
+      <option value="Administrativa" selected="selected">Administrativa</option>
+      <option value="Emergencias">Emergencias</option>
+      <option value="Ginecologia">Ginecologia</option>
+      <option value="Oncologia">Oncologia</option>
+      <option value="Dermatologia">Dermatologia</option>
+      <option value="Ortopedia">Ortopedia</option>
+    </select>
+  <br>
+  <br>
+  Date:
+  <input type="text" name="date">
+  <br>
+  <br>
+  Date:
+  <input type="text" name="date">
+  <br>    
+  <input type="submit" value=""/>
+</form>
 
-<p>
-  <strong>Area:</strong>
-  <%= @secretary.area %>
-</p>
-
-<p>
-  <strong>App date:</strong>
-  <%= @secretary.app_date %>
-</p>
-
-<p>
-  <strong>Observation:</strong>
-  <%= @secretary.observation %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @secretary.status %>
-</p>
-
-<p>
-  <strong>Id patient:</strong>
-  <%= @secretary.id_patient %>
-</p>
-
-<%= link_to 'Edit', edit_secretary_path(@secretary) %> |
 <%= link_to 'Back', secretaries_path %>

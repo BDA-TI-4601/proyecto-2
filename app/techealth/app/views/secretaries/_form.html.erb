@@ -12,18 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :id_appointment %>
-    <%= form.number_field :id_appointment %>
-  </div>
-
-  <div class="field">
     <%= form.label :area %>
-    <%= form.text_field :area %>
+    <select name="area">
+      <option value="Administrativa" selected="selected">Administrativa</option>
+      <option value="Emergencias">Emergencias</option>
+      <option value="Ginecologia">Ginecologia</option>
+      <option value="Oncologia">Oncologia</option>
+      <option value="Dermatologia">Dermatologia</option>
+      <option value="Ortopedia">Ortopedia</option>
+    </select>
   </div>
 
   <div class="field">
     <%= form.label :app_date %>
-    <%= form.text_field :app_date %>
+    <%= form.datetime_select :app_date %>
   </div>
 
   <div class="field">
@@ -32,16 +34,11 @@
   </div>
 
   <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
     <%= form.label :id_patient %>
     <%= form.number_field :id_patient %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "New appointment" %>
   </div>
 <% end %>

@@ -10,6 +10,14 @@ class DiagnosesController < ApplicationController
   # GET /diagnoses/1
   # GET /diagnoses/1.json
   def show
+    list_treatments = @diagnosis.id_treatments
+    @treatments = []
+    list_treatments.each do |i|
+      actual = Treatment.find_by(id_treatment: i[:id])
+      if !actual.nil?
+        @treatments += [actual]
+      end
+    end
   end
 
   # GET /diagnoses/new
@@ -19,6 +27,12 @@ class DiagnosesController < ApplicationController
 
   # GET /diagnoses/1/edit
   def edit
+    list = @diagnosis.id_treatments
+    aux_list = []
+    list.each do |i|
+      aux_list += [i[:id]]
+    end
+    @diagnosis.id_treatments = aux_list
   end
 
   # POST /diagnoses
@@ -26,17 +40,23 @@ class DiagnosesController < ApplicationController
   def create
     p_id_diagnose = params[:diagnose][:id_diagnose].to_i
     p_name = params[:diagnose][:name]
-    p_symptoms = params[:diagnose][:symptoms].split(',')
-    p_level = params[:diagnose][:level]
+    p_symptoms = params[:diagnose][:symptoms].split(' ')
+    p_level = [:level]
     p_observations = params[:diagnose][:observations]
-    p_treatments = params[:diagnose][:id_treatments].split(',')
+    p_treatments = params[:diagnose][:id_treatments].split(' ')
+    
+    aux_list = []
+    p_treatments.each do |p_t|
+      aux_list += [{"id" => p_t.to_i}]
+    end
+    
     @diagnosis = Diagnose.new(
       id_diagnose: p_id_diagnose,
       name: p_name,
       symptoms: p_symptoms,
       level: p_level,
       observations: p_observations,
-      id_treatments: p_treatments
+      id_treatments: aux_list
     )
     respond_to do |format|
       if @diagnosis.save
@@ -50,20 +70,24 @@ class DiagnosesController < ApplicationController
   # PATCH/PUT /diagnoses/1
   # PATCH/PUT /diagnoses/1.json
   def update
-    p_id_diagnose = params[:diagnose][:id_diagnose].to_i
     p_name = params[:diagnose][:name]
-    p_symptoms = params[:diagnose][:symptoms].split(',')
-    p_level = params[:diagnose][:level]
+    p_symptoms = params[:diagnose][:symptoms].split(' ')
+    p_level = params[:level]
     p_observations = params[:diagnose][:observations]
-    p_treatments = params[:diagnose][:id_treatments].split(',')
+    p_treatments = params[:diagnose][:id_treatments].split(' ')
+
+    aux_list = []
+    p_treatments.each do |i|
+      aux_list += [{"id" => i.to_i}]
+    end
+
     respond_to do |format|
       if @diagnosis.update(
-        id_diagnose: p_id_diagnose,
         name: p_name,
         symptoms: p_symptoms,
         level: p_level,
         observations: p_observations,
-        id_treatments: p_treatments
+        id_treatments: aux_list
         )
         format.html { redirect_to @diagnosis, notice: 'Diagnose was successfully updated.' }
         format.json { render :show, status: :ok, location: @diagnosis }

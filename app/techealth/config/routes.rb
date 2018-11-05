@@ -16,10 +16,12 @@ Rails.application.routes.draw do
   get 'secretaries/index5'
   get 'secretaries/delete_app'
   get 'secretaries/assign_app'
-  get '/secretaries/by_patient'
-  get '/administrators/index2'
-  get '/administrators/index3'
-  get '/administrators/index4'
+  get 'secretaries/by_patient'
+  get 'administrators/refresh'
+  get 'administrators/range_date'
+  get 'administrators/status_filter'
+  get 'administrators/area_filter'
+  get 'administrators/patient_filter'
 
   root "logins#index"
 

@@ -13,6 +13,8 @@ class DoctorsController < ApplicationController
     @p_final_date = params[:final_date]
     if (@p_initial_date == "" || @p_final_date == "")
       @doctors = []
+      @patients = []
+      flash[:notice] = "error: empty fields."
     else
       query = {
         'app_date' => 
@@ -23,8 +25,8 @@ class DoctorsController < ApplicationController
         }
     @doctors = Appointment.where(query)
     @patients = []
-    end
     flash[:notice] = "initial date: "+@p_initial_date + ", final date: "+@p_final_date
+    end
     render 'index'
   end
   helper_method :index2
@@ -49,8 +51,15 @@ class DoctorsController < ApplicationController
 
   def index5
     p_id_patient = params[:patient_id]
-    @patients = Patient.where(id_patient: p_id_patient)
-    @doctors = Appointment.all
+    if (p_id_patient == "")
+      @patients = []
+      @doctors = Appointment.all
+      flash[:notice] = "error: patient id is empty."  
+    else
+      @patients = Patient.where(id_patient: p_id_patient)
+      @doctors = Appointment.all
+      flash[:notice] = "OK"
+    end
     render 'index'
   end
   helper_method :index5
@@ -72,24 +81,36 @@ class DoctorsController < ApplicationController
   # GET /doctors/1
   # GET /doctors/1.json
   def show
-    p_id = params[:app_id]
-    @patients = []
+    p_id = params[:app_id].to_i
     @appointment = Appointment.find_by(id_appointment: p_id)
-    @id_patient_actual = @appointment.id_patient
-    list = @appointment.id_diagnoses
     temp_treats = []
     @diagnoses = []
+    @treatments = []
+    if @appointment.nil?
+      @actual_user = Patient.find_by(id_patient: @id_patient_actual)
+      flash[:notice] = "appointment doesn't exist"
+      redirect_to controller: 'doctors' and return
+    else
+      list = @appointment.id_diagnoses
+    end
     if list.nil?
       @diagnoses = []
       @treatments = []
     else
       list.each do |i|
-        @diagnoses += [Diagnose.find_by(id_diagnose: i)]
-        temp_treats += Diagnose.find_by(id_diagnose: i).id_treatments
+        app_actual = Diagnose.find_by(id_diagnose: i[:id])
+        if !app_actual.nil?
+          @diagnoses += [app_actual]
+          temp_treats += Diagnose.find_by(id_diagnose: i[:id]).id_treatments
+        end
       end
-      @treatments = []
-      temp_treats.each do |j|
-        @treatments += [Treatment.find_by(id_treatment: j)]
+      if !temp_treats.nil?
+        temp_treats.each do |j|
+          algo = Treatment.find_by(id_treatment: j)
+          if !algo.nil? 
+            @treatments += [algo]
+          end
+        end
       end
     end
   end
