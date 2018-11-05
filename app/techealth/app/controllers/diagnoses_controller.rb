@@ -38,7 +38,6 @@ class DiagnosesController < ApplicationController
   # POST /diagnoses
   # POST /diagnoses.json
   def create
-    p_id_diagnose = params[:diagnose][:id_diagnose].to_i
     p_name = params[:diagnose][:name]
     p_symptoms = params[:diagnose][:symptoms].split(' ')
     p_level = [:level]
@@ -51,7 +50,6 @@ class DiagnosesController < ApplicationController
     end
     
     @diagnosis = Diagnose.new(
-      id_diagnose: p_id_diagnose,
       name: p_name,
       symptoms: p_symptoms,
       level: p_level,
