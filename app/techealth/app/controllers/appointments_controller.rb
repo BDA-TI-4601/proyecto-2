@@ -91,7 +91,7 @@ class AppointmentsController < ApplicationController
       aux_list += [{"id" => diag.to_i}]
     end
     respond_to do |format|
-      if @appointment.update(id_diagnoses: aux_list)
+      if @appointment.update(id_diagnoses: aux_list, status: "Realizada")
         flash[:notice] = "Diagnoses assigned"
         redirect_to controller: 'appointments' and return
       else

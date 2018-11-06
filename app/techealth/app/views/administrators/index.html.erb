@@ -33,7 +33,7 @@
   <thead>
     <tr>
       <th>Patient</th>
-      <th>|  Illness Range  |</th>
+      <th>|  Illness Range [max,min]  |</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -92,7 +92,8 @@
 
 <br>
 
-<form action = "/administrators/range_date" >
+<form action = "/administrators/operations" >
+  <input type="hidden" name="operation" value="date_filter">
   Please enter initial date. (yyyy-mm-dd)
   <br>
   <input type="text" name="initial_date">
@@ -106,7 +107,8 @@
 
 <br>
 
-<form action = "/administrators/status_filter" >
+<form action = "/administrators/operations" >
+  <input type="hidden" name="operation" value="status_filter">
   Please enter status of appointment to filter:
   <br>
   <select name="status">
@@ -121,7 +123,8 @@
 
 <br>
 
-<form action = "/administrators/area_filter">
+<form action = "/administrators/operations">
+  <input type="hidden" name="operation" value="area_filter">
   Please enter area of appointment to filter:
   <br>
   <select name="area">
@@ -137,7 +140,8 @@
 
 <br>
 
-<form action = "/administrators/patient_filter">
+<form action = "/administrators/operations">
+  <input type="hidden" name="operation" value="patient_filter">
   Please enter ID patient to filter:
   <br>
   <input type="text" name="patient">

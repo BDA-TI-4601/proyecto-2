@@ -18,10 +18,7 @@ Rails.application.routes.draw do
   get 'secretaries/assign_app'
   get 'secretaries/by_patient'
   get 'administrators/refresh'
-  get 'administrators/range_date'
-  get 'administrators/status_filter'
-  get 'administrators/area_filter'
-  get 'administrators/patient_filter'
+  get 'administrators/operations'
 
   root "logins#index"
 
