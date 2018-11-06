@@ -45,3 +45,94 @@ Appointment.where(area: @p_area).count
 # Cantidad de citas por estado
 @p_status = params[:status]
 Appointment.where(status: @p_status).count
+
+
+/*  Por tipo de tratamiento,
+    cantidad de veces asignado y
+    promedio de monto */
+db.Treatment.aggregate( 
+    [
+        {
+            $group : {
+                "_id" : 0,
+                "count" : {
+                    $sum : 1
+                },
+                "average" : {
+                    $avg : "$total"
+                }
+            }
+        }
+    ]
+)
+
+/*  Rango de diagnosticos */
+db.appointments.aggregate(
+    [
+        {
+            $group : {
+                "_id" : "$id_patient",
+                "count" : {
+                    $push : {
+                        $size : "$id_diagnoses"
+                    }
+                }
+            }
+        },
+        {
+            $project : {
+                "_id" : 0,
+                "patient" : "$_id",
+                "max" : {
+                    $max : "$count"
+                },
+                "min" : {
+                    $min : "$count"
+                }
+            }
+        }
+    ]
+)
+
+
+/*  Enfermedad más diagnosticada con
+    cantidad de veces que ha sido asignada*/
+db.appointments.aggregate(
+    [
+        {
+            $project : {
+                "_id" : 0,
+                "id_diagnoses" : 1
+            }
+        },
+        {
+            $unwind : "$id_diagnoses"
+        },
+        {
+            $lookup : {
+                from : "diagnoses",
+                localField : "id_diagnoses.id",
+                foreignField : "id_diagnose",
+                as : "illness"
+            }
+        },
+        {
+            $group : {
+                "_id" : "$illness.name",
+                "count" : {
+                    "$sum" : 1
+                }
+            }
+        },
+        {
+            $unwind : "$_id"
+        },
+        {
+            $sort : {
+                "count" : -1
+            }
+        }
+    ]
+)
+
+
